@@ -1,13 +1,16 @@
 objPhaser = null;
 Main = function()
 {
-	objPhaser = new Phaser.Game(1280, 720, Phaser.CANVAS, "example", { preload: this.preload, create: this.create, update: this.update } );
+	objPhaser = new Phaser.Game(Constants.STATE_SCREEN_WIDTH, Constants.STATE_SCREEN_HEIGHT, Phaser.CANVAS, "example", { preload: this.preload, create: this.create, update: this.update } );
 }
 
 Main.prototype.preload = function()
 {
-	objPhaser.load.image(Constants.ASSET_HERO, "assets/hero.png");
+	objPhaser.load.image(Constants.ASSET_HERO_UP, "assets/hero.png");
+	objPhaser.load.image(Constants.ASSET_HERO_DOWN, "assets/hero.png");
 	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/btnPLay.png");
+	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
+	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
 }
 
 Main.prototype.create = function()

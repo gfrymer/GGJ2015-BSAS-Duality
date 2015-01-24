@@ -1,6 +1,6 @@
 AbstractEntity = ring.create([], {
 
-	this.sprite: null,
+	sprite: null,
 
 	create: function()
 	{
