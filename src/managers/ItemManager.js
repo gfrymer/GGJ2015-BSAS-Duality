@@ -103,7 +103,8 @@ ItemManager = ring.create([], {
 
 	forceMonster: function()
 	{
-		this.itemsStack.unshift( [ ItemManager.ASSET_MONSTER ] );
+
+		this.itemsStack.unshift( [ Constants.ASSET_MONSTER ] );
 		this.nextItemTime = ItemManager.TIME_MIN_SPAWN;
 	},
 
