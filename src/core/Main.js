@@ -1,4 +1,6 @@
 objPhaser = null;
+cursors = null;
+
 Main = function()
 {
 	objPhaser = new Phaser.Game(Constants.STATE_SCREEN_WIDTH, Constants.STATE_SCREEN_HEIGHT, Phaser.CANVAS, "example", { preload: this.preload, create: this.create, update: this.update } );
@@ -11,10 +13,12 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/btnPLay.png");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
+	objPhaser.load.image(Constants.ASSET_FLYING_POWER, "assets/flyingpower.png");
 }
 
 Main.prototype.create = function()
 {
+	cursors = objPhaser.input.keyboard.createCursorKeys();
 	objPhaser.scale.pageAlignHorizontally = true;
 	objPhaser.scale.pageAlignVeritcally = true;
 	objPhaser.scale.refresh();

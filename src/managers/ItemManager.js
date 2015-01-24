@@ -1,7 +1,7 @@
 ItemManager = ring.create([], {
 
-	this.stack: null;
-	this.nextItemTime: null;
+	stack: null,
+	nextItemTime: null,
 
 	constuctor: function()
 	{
