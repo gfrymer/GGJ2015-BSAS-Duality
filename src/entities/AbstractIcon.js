@@ -8,6 +8,14 @@ AbstractIcon = ring.create([AbstractEntity], {
 		
 	},
 
+	update: function(gamespeed)
+	{
+		if (this.sprite)
+		{
+			this.sprite.x-=gamespeed;
+		}
+	},
+
 	setPosition: function(pos)
 	{
 		this.position = pos;

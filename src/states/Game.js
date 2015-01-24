@@ -30,11 +30,11 @@ Game = ring.create([], {
 			}
 			else if (items[i].position==ItemManager.POSITION_MIDDLE)
 			{
-				items[i].sprite.y=Constants.ITEM_Y_MIDDLE;
+				items[i].sprite.y=(Constants.MINI_SCREEN_HEIGHT - items[i].sprite.height) / 2;
 			}
 			else
 			{
-				items[i].sprite.y=Constants.ITEM_Y_DOWN;
+				items[i].sprite.y=Constants.MINI_SCREEN_HEIGHT - items[i].sprite.height - Constants.ITEM_Y_UP;
 			}
 			if (!isup)
 			{
@@ -58,7 +58,7 @@ Game = ring.create([], {
 				}
 				else
 				{
-					items[i][j].sprite.x-=this.gamespeed;
+					items[i][j].update(this.gamespeed);
 				}
 			}
 			if (remove)
@@ -73,6 +73,8 @@ Game = ring.create([], {
 	collisionItem: function(isup,items,rmv)
 	{
 		var colitem = items[rmv[0]][rmv[1]];
+		var hero = (isup) ? this.herodown : this.heroup;
+		var heromonster = (isup) ? this.heroup : this.herodown;
 		if (colitem.type==Constants.ASSET_MONSTER_ICON)
 		{
 			if (isup)
@@ -86,6 +88,29 @@ Game = ring.create([], {
 		}
 		if (colitem.type==Constants.ASSET_MONSTER)
 		{
+			if (heromonster.hasShield())
+			{
+				heromonster.useShield();
+			}
+			else
+			{
+				if (heromonster.loseLife())
+				{
+					objPhaser.state.start(Constants.STATE_GAME_OVER);
+				}
+			}
+		}
+		if (colitem.type==Constants.ASSET_SHIELD_ICON)
+		{
+			hero.setShield(true);
+		}
+		if (colitem.type==Constants.ASSET_BAD_KARMA_ICON)
+		{
+			hero.substractKarma();
+		}
+		if (colitem.type==Constants.ASSET_LIFE_ICON)
+		{
+			hero.moreLife();
 		}
 		for (i=0;i<items[rmv[0]].length;i++)
 		{

@@ -8,7 +8,7 @@ ItemManager = ring.create([], {
 
 	constructor: function()
 	{
-		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA, Constants.ASSET_SHIELD, Constants.ASSET_MONSTER_ICON);
+		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA_ICON, Constants.ASSET_SHIELD_ICON, Constants.ASSET_MONSTER_ICON);
 
 		this.itemsStack = new Array();
 		this.nextItemTime = this.getRandomTime();
@@ -73,11 +73,11 @@ ItemManager = ring.create([], {
 					item = new LifeIcon();
 
 					break;
-				case Constants.ASSET_SHIELD:
+				case Constants.ASSET_SHIELD_ICON:
 					item = new ShieldIcon();
 
 					break;
-				case Constants.ASSET_BAD_KARMA:
+				case Constants.ASSET_BAD_KARMA_ICON:
 					item = new BadKarmaIcon();
 
 					break;

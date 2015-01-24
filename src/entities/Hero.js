@@ -20,17 +20,76 @@ Hero = ring.create([AbstractEntity], {
 		this.anim = Math.floor(Math.random() * Constants.HERO_LEVITATE_SPEED);
 		this.sinchange = 0;
 		this.ofsy = 0;
-		this.lives = 3;
+		this.lives = Constants.TOTAL_LIVES;
+		this.shield = false;
+		this.shieldtime = 0;
+		this.karma = Constants.HERO_KARMA;
 		
-		var lifewidth = PIXI.TextureCache[Constants.ASSET_LIFE].width;
-		var lifeheight = PIXI.TextureCache[Constants.ASSET_LIFE].height;
+		this.lifewidth = PIXI.TextureCache[Constants.ASSET_LIFE].width;
+		this.lifeheight = PIXI.TextureCache[Constants.ASSET_LIFE].height;
 		this.life = [];
 		for (i=0;i<this.lives;i++)
 		{
-			this.life[i] = objPhaser.add.sprite(((i+1) * (lifewidth * 1.3)) + this.flyingpower.getWidth() + Constants.FLYING_X_OFFSET,Constants.FLYING_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
+			this.life[i] = objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.3)) + this.flyingpower.getWidth() + Constants.FLYING_X_OFFSET,Constants.FLYING_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
 		}
 	},
 
+	hasShield: function()
+	{
+		return this.shield;
+	},
+	
+	useShield: function()
+	{
+		this.setShield(false);
+	},
+
+	setShield: function(hasit)
+	{
+		if (hasit)
+		{
+			if (!this.shield)
+			{
+				this.sprite.alpha = 0.5;
+			}
+			this.shieldtime = Constants.HERO_SHIELD_TIME;
+		}
+		else
+		{
+			if (this.shield)
+			{
+				this.sprite.alpha = 1;				
+			}
+		}
+		this.shield = hasit;
+	},
+
+	loseLife: function()
+	{
+		if (this.lives>1)
+		{
+			this.lives--;
+			objPhaser.world.remove(this.life[this.lives]);
+			this.life.splice(this.lives,1);
+		}
+		else
+		{
+			return true;
+		}
+		return false;
+	},
+	
+	moreLife: function()
+	{
+		this.lives++;
+		this.life.push(objPhaser.add.sprite(((this.lives) * (this.lifewidth * 1.3)) + this.flyingpower.getWidth() + Constants.FLYING_X_OFFSET,Constants.FLYING_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
+	},
+	
+	substractKarma: function()
+	{
+		this.karma--;
+	},
+	
 	update: function(items)
 	{
 		this.flyingpower.update();
@@ -54,6 +113,17 @@ Hero = ring.create([AbstractEntity], {
 				}
 			}
 		}
+		if (this.shield)
+		{
+			if (this.shieldtime>0)
+			{
+				this.shieldtime--;
+			}
+			else
+			{
+				this.useShield();
+			}
+		}
 		if (this.ofsy>0)
 		{
 				this.ofsy--;
@@ -65,10 +135,6 @@ Hero = ring.create([AbstractEntity], {
 			this.sinchange++;
 			this.sprite.y += Math.round(Math.sin(this.sinchange) * Constants.HERO_LEVITATE_ACCELERATION);
 		}
-/*		if (!this.isup)
-		{
-			return;
-		}*/
 		var check = items.length>0;
 		var i=0;
 		while (check)
@@ -82,9 +148,9 @@ Hero = ring.create([AbstractEntity], {
 				for (j=0;j<items[i].length;j++)
 				{
 					if (((items[i][j].sprite.x<=this.sprite.x+this.width) &&
-							(items[i][j].sprite.x+Constants.ITEM_WIDTH>=this.sprite.x)) &&
+							(items[i][j].sprite.x+items[i][j].sprite.width>=this.sprite.x)) &&
 							((items[i][j].sprite.y<=this.sprite.y+this.height) &&
-							(items[i][j].sprite.y+Constants.ITEM_WIDTH>=this.sprite.y)))
+							(items[i][j].sprite.y+items[i][j].sprite.height>=this.sprite.y)))
 					{
 						return [i,j];
 					}

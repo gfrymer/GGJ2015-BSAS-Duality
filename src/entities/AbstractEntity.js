@@ -7,6 +7,10 @@ AbstractEntity = ring.create([], {
 
 	},
 
+	update: function(gamespeed)
+	{
+	},
+
 	remove: function()
 	{
 		if (this.sprite)

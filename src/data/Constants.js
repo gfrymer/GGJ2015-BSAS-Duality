@@ -10,9 +10,14 @@ Constants.STATE_GAME_OVER = "game_over";
 Constants.ITEM_Y_UP = 30;
 Constants.ITEM_Y_MIDDLE = 130;
 Constants.ITEM_Y_DOWN = 230;
+Constants.MINI_SCREEN_HEIGHT = 300;
 Constants.ITEM_WIDTH = 45;
 
+Constants.TOTAL_LIVES = 3;
+
 Constants.DOWN_Y_OFFSET = 360;
+
+Constants.HERO_SHIELD_TIME = 150;
 
 Constants.HERO_SCALE = 2/3;
 Constants.HERO_X_OFFSET = 30;
@@ -24,11 +29,15 @@ Constants.FLYING_Y_OFFSET = 30;
 Constants.FLYING_DYNAMIC_X_OFFSET = 11;
 Constants.FLYING_DYNAMIC_Y_OFFSET = 0;
 
+Constants.MONSTER_LEVITATE_SPEED = 5;
+Constants.MONSTER_LEVITATE_ACCELERATION = 20;
+
 Constants.HERO_LEVITATE_SPEED = 10;
 Constants.HERO_LEVITATE_ACCELERATION = 3;
 Constants.HERO_JUMP_SPEED = 5;
 
 Constants.HERO_TOP_JUMP = 180;
+Constants.HERO_KARMA = 100;
 
 Constants.ASSET_BTN_PLAY = "btn_play";
 
