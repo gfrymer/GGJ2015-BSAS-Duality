@@ -7,6 +7,14 @@ AbstractEntity = ring.create([], {
 
 	},
 
+	remove: function()
+	{
+		if (this.sprite)
+		{
+			objPhaser.world.remove(this.sprite);
+		}
+	},
+	
 	toString: function()
 	{
 		return "AbstractEntity";

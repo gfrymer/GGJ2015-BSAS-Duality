@@ -1,5 +1,4 @@
 objPhaser = null;
-cursors = null;
 
 Main = function()
 {
@@ -14,6 +13,8 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
 	objPhaser.load.image(Constants.ASSET_FLYING_POWER, "assets/flyingpower.png");
+	objPhaser.load.image(Constants.ASSET_FLYING_POWER_DYNAMIC, "assets/flyingpowerdynamic.png");
+	objPhaser.load.image(Constants.ASSET_LIFE, "assets/life.png");
 
 	objPhaser.load.image(Constants.ASSET_MONSTER, "assets/monster.png");
 	objPhaser.load.image(Constants.ASSET_BAD_KARMA_ICON, "assets/karmaIcon.png");
@@ -24,7 +25,6 @@ Main.prototype.preload = function()
 
 Main.prototype.create = function()
 {
-	cursors = objPhaser.input.keyboard.createCursorKeys();
 	objPhaser.scale.pageAlignHorizontally = true;
 	objPhaser.scale.pageAlignVeritcally = true;
 	objPhaser.scale.refresh();

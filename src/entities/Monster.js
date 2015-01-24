@@ -1,4 +1,4 @@
-Monster = ring.create([AbstractEntity], {
+Monster = ring.create([AbstractIcon], {
 
 	constructor: function()
 	{
