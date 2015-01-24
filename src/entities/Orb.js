@@ -1,4 +1,4 @@
-Hero = ring.create([AbstractEntity], {
+Orb = ring.create([AbstractEntity], {
 
 	constructor: function()
 	{
@@ -7,7 +7,7 @@ Hero = ring.create([AbstractEntity], {
 
 	toString: function()
 	{
-		return "Hero";
+		return "Orb";
 	}
-
+	
 });

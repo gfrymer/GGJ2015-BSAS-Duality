@@ -2,7 +2,7 @@ AbstractEntity = ring.create([], {
 
 	this.sprite: null,
 
-	create: function()
+	constructor: function()
 	{
 
 	},

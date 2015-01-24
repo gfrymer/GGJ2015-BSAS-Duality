@@ -12,11 +12,16 @@ Game = ring.create([], {
 			//hero
 			//items manager
 			//enemy
+
+		this.itemManager = new ItemManager();
 	},
 
 	update: function()
 	{
-
+		if(this.itemManager != null)
+		{
+			this.itemManager.update();
+		}
 	},
 
 	toString: function()
