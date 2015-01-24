@@ -1,0 +1,4 @@
+ItemManager = function()
+{
+	
+}

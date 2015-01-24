@@ -7,7 +7,11 @@ Game = ring.create([], {
 
 	create: function()
 	{
-
+		//screen manager
+			//scroll
+			//hero
+			//items manager
+			//enemy
 	},
 
 	update: function()
