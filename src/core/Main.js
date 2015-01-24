@@ -14,6 +14,12 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
 	objPhaser.load.image(Constants.ASSET_FLYING_POWER, "assets/flyingpower.png");
+
+	objPhaser.load.image(Constants.ASSET_MONSTER, "assets/monster.png");
+	objPhaser.load.image(Constants.ASSET_BAD_KARMA_ICON, "assets/karmaIcon.png");
+	objPhaser.load.image(Constants.ASSET_LIFE_ICON, "assets/lifeIcon.png");
+	objPhaser.load.image(Constants.ASSET_MONSTER_ICON, "assets/monsterIcon.png");
+	objPhaser.load.image(Constants.ASSET_SHIELD_ICON, "assets/shieldIcon.png");
 }
 
 Main.prototype.create = function()

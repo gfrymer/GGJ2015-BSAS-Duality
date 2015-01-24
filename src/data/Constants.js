@@ -31,8 +31,8 @@ Constants.ASSET_HERO_DOWN = "hero_down";
 Constants.ASSET_BACKGROUND_UP = "background_up";
 Constants.ASSET_BACKGROUND_DOWN = "background_down";
 
-Constants.ASSET_BAD_KARMA = "bad_karma";
-Constants.ASSET_LIFE = "life";
-Constants.ASSET_SHIELD = "shield";
 Constants.ASSET_MONSTER = "monster";
+Constants.ASSET_BAD_KARMA_ICON = "bad_karma";
+Constants.ASSET_LIFE_ICON = "life";
+Constants.ASSET_SHIELD_ICON = "shield";
 Constants.ASSET_MONSTER_ICON = "monster_icon";

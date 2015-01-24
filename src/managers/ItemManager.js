@@ -1,34 +1,40 @@
 ItemManager = ring.create([], {
 
-	stack: null,
+	itemsStack: null,
+	itemTypes: null,
+	lastTime: null,
+	currentTime: null,
 	nextItemTime: null,
 
-	constuctor: function()
+	constructor: function()
 	{
-		this.itemTypes = new Array(ItemManager.TYPE_LIFE, ItemManager.TYPE_KARMA, ItemManager.TYPE_SHIELD, ItemManager.TYPE_MONSTER_ICON);
+		this.itemTypes = new Array(ItemManager.TYPE_LIFE, ItemManager.TYPE_BAD_KARMA, ItemManager.TYPE_SHIELD, ItemManager.TYPE_MONSTER_ICON);
 
-		this.stack = new Array();
+		this.itemsStack = new Array();
 		this.nextItemTime = this.getRandomTime();
 	},
 
 	update: function()
 	{
-		this.nextItemTime--;
-		if(this.nextItemTime == 0)
+		this.currentTime = new Date().getTime() - this.lastTime;
+		
+		if(this.currentTime >= this.nextItemTime)
 		{
-			this.addItemToStack();
+			this.addItemToitemsStack();
 			this.nextItemTime = this.getRandomTime();
 		}
 	},
 
 	getRandomTime: function()
 	{
+		this.lastTime = new Date().getTime();
+
 		var rndTime = Math.random() * (ItemManager.TIME_MAX - ItemManager.TIME_MIN) + ItemManager.TIME_MIN;
 
-		return rndTime;
+		return parseInt(rndTime);
 	},
 
-	addItemToStack: function()
+	addItemToitemsStack: function()
 	{
 		var cant = Math.random() * (ItemManager.MAX_ITEMS_AT_TIME - ItemManager.MIN_ITEMS_AT_TIME) + ItemManager.MIN_ITEMS_AT_TIME;
 		
@@ -43,23 +49,63 @@ ItemManager = ring.create([], {
 			items.push(type);
 		}
 
-		this.stack.push(items);
+		this.itemsStack.push(items);
 	},
 
 	getNextItems: function()
 	{
-		if(this.stack.length == 0)
+		if(this.itemsStack.length == 0)
 		{
 			return null;
 		}
 
-		var items = this.stack.shift();
-		return items;
+		var selItemTypes = this.itemsStack.shift();
+		var positions = new Array(ItemManager.POSITION_TOP, ItemManager.POSITION_MIDDLE, ItemManager.POSITION_BOTTOM)
+		var roundItems = new Array();
+		var type = null;
+		var item = null;
+		for(var i = 0; i < selItemTypes.length; i++)
+		{
+			type = selItemTypes[i];
+			switch(type)
+			{
+				case ItemManager.TYPE_LIFE:
+					item = new LifeIcon();
+
+					break;
+				case ItemManager.TYPE_SHIELD:
+					item = new ShieldIcon();
+
+					break;
+				case ItemManager.TYPE_BAD_KARMA:
+					item = new BadKarmaIcon();
+
+					break;
+				case ItemManager.TYPE_MONSTER_ICON:
+					item = new MonsterIcon();
+
+					break;
+				case ItemManager.TYPE_MONSTER:
+					item = new Monster();
+
+					break;
+			}
+
+			var rnd = parseInt(Math.random() * positions.length);
+			var pos = positions.splice(rnd, 1)[0];
+			item.setPosition(pos);
+
+			roundItems.push(item);
+		}
+		
+
+		return roundItems;
 	},
 
 	forceMonster: function()
 	{
-		this.stack.push(ItemManager.TYPE_MONSTER);
+		this.itemsStack.push( [ ItemManager.TYPE_MONSTER ] );
+		this.nextItemTime = ItemManager.TIME_MIN_SPAWN;
 	},
 
 	toString: function()
@@ -76,12 +122,13 @@ ItemManager.TYPE_MONSTER = "monster";
 ItemManager.TYPE_MONSTER_ICON = "monster_icon";
 
 ItemManager.POSITION_TOP = "top";
+ItemManager.POSITION_MIDDLE = "middle";
 ItemManager.POSITION_BOTTOM = "bottom";
 
-ItemManager.TIME_MIN = Phaser.SECOND * 1;
-ItemManager.TIME_MAX = Phaser.SECOND * 5;
+ItemManager.TIME_MIN = Phaser.Timer.SECOND;
+ItemManager.TIME_MAX = Phaser.Timer.SECOND * 5;
 
 ItemManager.TIME_MIN_SPAWN = Phaser.SECOND;
 
-ItemManager.MAX_ITEMS_AT_TIME = 2;
+ItemManager.MAX_ITEMS_AT_TIME = 3;
 ItemManager.MIN_ITEMS_AT_TIME = 1;

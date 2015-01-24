@@ -29,6 +29,10 @@ Game = ring.create([], {
 		{
 			this.itemManager.update();
 		}
+
+		var items = this.itemManager.getNextItems();
+		if(items)console.log(items);
+
 		this.scup.update();
 		this.scdown.update();
 		this.heroup.update();
