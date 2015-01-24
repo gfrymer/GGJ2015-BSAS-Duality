@@ -8,7 +8,7 @@ ItemManager = ring.create([], {
 
 	constructor: function()
 	{
-		this.itemTypes = new Array(ItemManager.TYPE_LIFE, ItemManager.TYPE_BAD_KARMA, ItemManager.TYPE_SHIELD, ItemManager.TYPE_MONSTER_ICON);
+		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA, Constants.ASSET_SHIELD, Constants.ASSET_MONSTER_ICON);
 
 		this.itemsStack = new Array();
 		this.nextItemTime = this.getRandomTime();
@@ -69,23 +69,23 @@ ItemManager = ring.create([], {
 			type = selItemTypes[i];
 			switch(type)
 			{
-				case ItemManager.TYPE_LIFE:
+				case Constants.ASSET_LIFE_ICON:
 					item = new LifeIcon();
 
 					break;
-				case ItemManager.TYPE_SHIELD:
+				case Constants.ASSET_SHIELD:
 					item = new ShieldIcon();
 
 					break;
-				case ItemManager.TYPE_BAD_KARMA:
+				case Constants.ASSET_BAD_KARMA:
 					item = new BadKarmaIcon();
 
 					break;
-				case ItemManager.TYPE_MONSTER_ICON:
+				case Constants.ASSET_MONSTER_ICON:
 					item = new MonsterIcon();
 
 					break;
-				case ItemManager.TYPE_MONSTER:
+				case Constants.ASSET_MONSTER:
 					item = new Monster();
 
 					break;
@@ -98,13 +98,12 @@ ItemManager = ring.create([], {
 			roundItems.push(item);
 		}
 		
-
 		return roundItems;
 	},
 
 	forceMonster: function()
 	{
-		this.itemsStack.push( [ ItemManager.TYPE_MONSTER ] );
+		this.itemsStack.unshift( [ ItemManager.ASSET_MONSTER ] );
 		this.nextItemTime = ItemManager.TIME_MIN_SPAWN;
 	},
 
@@ -114,12 +113,6 @@ ItemManager = ring.create([], {
 	}
 
 });
-
-ItemManager.TYPE_LIFE = "life";
-ItemManager.TYPE_BAD_KARMA = "bad_karma";
-ItemManager.TYPE_SHIELD = "shield";
-ItemManager.TYPE_MONSTER = "monster";
-ItemManager.TYPE_MONSTER_ICON = "monster_icon";
 
 ItemManager.POSITION_TOP = "top";
 ItemManager.POSITION_MIDDLE = "middle";
