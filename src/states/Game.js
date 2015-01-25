@@ -31,13 +31,17 @@ Game = ring.create([], {
     this.totalkarmadownscorecount = null;
     this.totallivesdownscorecount = null;
     this.totalscoredownscorecount = null;
-
+    
 		this.gametime = 0;
 		this.gamespeed = Constants.GAME_SPEED;
 		this.itemsup = [];
 		this.itemsdown = [];
 		this.scup = new Scroll(Constants.ASSET_BACKGROUND_UP,0,this.gamespeed);
 		this.scdown = new Scroll(Constants.ASSET_BACKGROUND_DOWN,Constants.DOWN_Y_OFFSET,this.gamespeed);
+
+    this.scrollbar = objPhaser.add.sprite(Constants.STATE_SCREEN_WIDTH / 2, 0, Constants.ASSET_SCROLL_BAR);
+    this.scrollbar.anchor.set(0.5,0);
+		this.smallheroes = objPhaser.add.sprite(0, 0, Constants.ASSET_SMALL_HEROES);
 
 		this.groupItems = objPhaser.add.group();
 		this.groupHud = objPhaser.add.group();
@@ -54,6 +58,12 @@ Game = ring.create([], {
 		this.bgMusic.play('', 0, 1, true);
 	},
 
+	updateScrollBar:function()
+	{
+		var tot = this.scrollbar.width - this.smallheroes.width * 2;
+		this.smallheroes.x = (this.scrollbar.x - this.scrollbar.width / 2) + (this.gametime * tot / Constants.GAME_TIME_TEMPLE);
+	},
+	
 	positionItems:function(isup,items)
 	{
 		for(var i=0;i<items.length;i++)
@@ -374,6 +384,7 @@ Game = ring.create([], {
 			return;
 		}
 		this.gametime++;
+		this.updateScrollBar();
 		if (this.itemManagerDown != null)
 		{
 			this.itemManagerDown.update();
@@ -447,6 +458,7 @@ Game = ring.create([], {
 
 	onMenuClick: function()
 	{
+		this.bgMusic.stop();
 		objPhaser.state.start(Constants.STATE_MENU);
 	},
 

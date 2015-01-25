@@ -14,6 +14,9 @@ Constants.GAME_SPEED = 5;
 
 Constants.GAME_TIME_TEMPLE = 4500;
 
+Constants.ASSET_SCROLL_BAR = "scrollbar";
+Constants.ASSET_SMALL_HEROES = "smallheroes";
+
 Constants.ITEM_Y_UP = 30;
 Constants.ITEM_Y_MIDDLE = 130;
 Constants.ITEM_Y_DOWN = 230;

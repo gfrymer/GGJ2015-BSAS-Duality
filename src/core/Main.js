@@ -20,6 +20,9 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_CREDITS, "assets/credits.png");
 	objPhaser.load.image(Constants.ASSET_HELP, "assets/help.png");
 	objPhaser.load.image(Constants.ASSET_GAME_OVER, "assets/gameover.png");
+	
+	objPhaser.load.image(Constants.ASSET_SCROLL_BAR, "assets/scrollbar.png");
+	objPhaser.load.image(Constants.ASSET_SMALL_HEROES, "assets/smallheroes.png");
 
 	objPhaser.load.image(Constants.ASSET_HUD, "assets/hud.png");
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_FLYING, "assets/bar_flying.png");
