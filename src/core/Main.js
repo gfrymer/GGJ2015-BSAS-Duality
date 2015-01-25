@@ -17,6 +17,7 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_FLYING, "assets/bar_flying.png");
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_KARMA, "assets/bar_karma.png");
 	objPhaser.load.image(Constants.ASSET_LIFE, "assets/life.png");
+	objPhaser.load.image(Constants.ASSET_TEMPLE, "assets/temple.png");
 
 	objPhaser.load.spritesheet(Constants.ASSET_MONSTER, "assets/monster.png", 100, 100);
 	objPhaser.load.image(Constants.ASSET_BAD_KARMA_ICON, "assets/karmaIcon.png");

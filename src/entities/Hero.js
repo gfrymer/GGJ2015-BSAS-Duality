@@ -15,9 +15,15 @@ Hero = ring.create([AbstractEntity], {
 
 		this.isup=isup;
 		this.sprite = objPhaser.add.sprite(Constants.HERO_X_OFFSET, ypos, heroImage);
+<<<<<<< HEAD
 		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE;
 		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE;
 		this.sprite.scale.setTo(Constants.HERO_SCALE);
+=======
+		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE - Constants.HERO_RECTANGLE_COLLISION_SHRINK;
+		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE - Constants.HERO_RECTANGLE_COLLISION_SHRINK;
+		this.sprite.scale.setTo(Constants.HERO_SCALE, Constants.HERO_SCALE);
+>>>>>>> origin/master
 		this.anim = Math.floor(Math.random() * Constants.HERO_LEVITATE_SPEED);
 		this.sinchange = 0;
 		this.ofsy = 0;
@@ -86,9 +92,12 @@ Hero = ring.create([AbstractEntity], {
 		{
 			return;
 		}
-
 		this.lives++;
+<<<<<<< HEAD
 		this.life.push( objPhaser.add.sprite( ((this.lifewidth * 1.1) * (this.lives) )  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE ) );
+=======
+		this.life.push(objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
+>>>>>>> origin/master
 	},
 	
 	substractKarma: function()
@@ -96,6 +105,7 @@ Hero = ring.create([AbstractEntity], {
 		this.karma--;
 	},
 	
+<<<<<<< HEAD
 	moreKarma: function()
 	{
 		this.karma++;
@@ -104,6 +114,9 @@ Hero = ring.create([AbstractEntity], {
 	
 
 	update: function(items)
+=======
+	update: function(items,gamespeed)
+>>>>>>> origin/master
 	{
 		this.flyingpower.update();
 		if (this.upKey.isDown)
@@ -151,6 +164,7 @@ Hero = ring.create([AbstractEntity], {
 			this.sinchange++;
 			this.sprite.y += Math.round(Math.sin(this.sinchange) * Constants.HERO_LEVITATE_ACCELERATION);
 		}
+		this.sprite.x += gamespeed;
 		var check = items.length>0;
 		var i=0;
 		while (check)
@@ -164,9 +178,9 @@ Hero = ring.create([AbstractEntity], {
 				for (j=0;j<items[i].length;j++)
 				{
 					if (((items[i][j].sprite.x<=this.sprite.x+this.width) &&
-							(items[i][j].sprite.x+items[i][j].sprite.width>=this.sprite.x)) &&
+							(items[i][j].sprite.x+items[i][j].sprite.width>=this.sprite.x+Constants.HERO_RECTANGLE_COLLISION_SHRINK)) &&
 							((items[i][j].sprite.y<=this.sprite.y+this.height) &&
-							(items[i][j].sprite.y+items[i][j].sprite.height>=this.sprite.y)))
+							(items[i][j].sprite.y+items[i][j].sprite.height>=this.sprite.y+Constants.HERO_RECTANGLE_COLLISION_SHRINK)))
 					{
 						return [i,j];
 					}
