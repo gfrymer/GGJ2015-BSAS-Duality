@@ -7,6 +7,30 @@ Game = ring.create([], {
 
 	create: function()
 	{
+		this.btnMenu = null;
+
+		this.finalscore = null;
+    this.totalkarmaup = null;
+    this.totallivesup = null;
+    this.totalscoresup = null;
+    this.totalkarmadown = null;
+    this.totallivesdown = null;
+    this.totalscoredown = null;
+
+    this.totalkarmascore = null;
+    this.totallivesupscore = null;
+    this.totalscoresupscore = null;
+    this.totalkarmadownscore = null;
+    this.totallivesdownscore = null;
+    this.totalscoredownscore = null;
+
+    this.totalkarmascorecount = null;
+    this.totallivesupscorecount = null;
+    this.totalscoresupscorecount = null;
+    this.totalkarmadownscorecount = null;
+    this.totallivesdownscorecount = null;
+    this.totalscoredownscorecount = null;
+
 		this.gametime = 0;
 		this.gamespeed = Constants.GAME_SPEED;
 		this.itemsup = [];
@@ -26,7 +50,7 @@ Game = ring.create([], {
 		this.itemManagerDown = new ItemManager(this.groupItems);
 
 		this.bgMusic = objPhaser.add.audio(Constants.ASSET_BG_MUSIC);
-		this.bgMusic.play('', 0, 0, true);
+		this.bgMusic.play('', 0, 1, true);
 	},
 
 	positionItems:function(isup,items)
@@ -80,9 +104,10 @@ Game = ring.create([], {
 		}
 	},
 
-	fadeItem: function(item)
+	fadeItemAndOut: function(item)
 	{
 		var objTween = objPhaser.add.tween(item.sprite).to({alpha: 0},200,Phaser.Easing.Default,true);
+		objPhaser.add.tween(item.sprite).to({x: 0},350,Phaser.Easing.Default,true);
 		objTween.onComplete.addOnce(this.removeItemNow, this);
 	},
 	
@@ -228,14 +253,110 @@ Game = ring.create([], {
 		{
 			if (i!=rmv[1])
 			{
-				this.fadeItem(items[rmv[0]][i]);
+				this.fadeItemAndOut(items[rmv[0]][i]);
 			}
 		}
 		items.splice(rmv[0],1);
 	},
 
+	finishScoreAnimation: function(score)
+	{
+		var text = "0";
+    var styleup = { font: "bold 30px Arial", fill: "#0c5cf5", align: "right" };
+    var styledown = { font: "bold 30px Arial", fill: "#dd5e00", align: "right" };
+    var styleupbig = { font: "bold 34px Arial", fill: "#0c5cf5", align: "right" };
+    var styledownbig = { font: "bold 34px Arial", fill: "#dd5e00", align: "right" };
+    this.totalkarmaup = objPhaser.add.text(objPhaser.world.centerX+200, 160, text, styleup);
+    this.totallivesup = objPhaser.add.text(objPhaser.world.centerX+200, 210, text, styleup);
+    this.totalscoresup = objPhaser.add.text(objPhaser.world.centerX+200, 270, text, styleupbig);
+    this.totalkarmadown = objPhaser.add.text(objPhaser.world.centerX+200, 400, text, styledown);
+    this.totallivesdown = objPhaser.add.text(objPhaser.world.centerX+200, 450, text, styledown);
+    this.totalscoredown = objPhaser.add.text(objPhaser.world.centerX+200, 510, text, styledownbig);
+
+    this.totalkarmascore = 200;
+    this.totallivesupscore = 100;
+    this.totalscoresupscore = 300;
+    this.totalkarmadownscore = 200;
+    this.totallivesdownscore = 100;
+    this.totalscoredownscore = 200;
+
+    this.totalkarmascorecount = 0;
+    this.totallivesupscorecount = 0;
+    this.totalscoresupscorecount = 0;
+    this.totalkarmadownscorecount = 0;
+    this.totallivesdownscorecount = 0;
+    this.totalscoredownscorecount = 0;
+	},
+
 	update: function()
 	{
+		if (this.btnMenu)
+		{
+			return;
+		}
+		if (this.finalscore)
+		{
+			if (this.totalkarmascore)
+			{
+				var updated = false;
+				if (this.totalkarmascorecount<this.totalkarmascore)
+				{
+					updated = true;
+					this.totalkarmascorecount++;
+				}
+				if (this.totallivesupscorecount<this.totallivesupscore)
+				{
+					updated = true;
+					this.totallivesupscorecount++;
+				}
+				if (this.totalscoresupscorecount<this.totalscoresupscore)
+				{
+					updated = true;
+					this.totalscoresupscorecount++;
+				}
+				if (this.totalkarmadownscorecount<this.totalkarmadownscore)
+				{
+					updated = true;
+					this.totalkarmadownscorecount++;
+				}
+				if (this.totallivesdownscorecount<this.totallivesdownscore)
+				{
+					updated = true;
+					this.totallivesdownscorecount++;
+				}
+				if (this.totalscoredownscorecount<this.totalscoredownscore)
+				{
+					updated = true;
+					this.totalscoredownscorecount++;
+				}
+		    this.totalkarmaup.text = this.totalkarmascorecount;
+		    this.totallivesup.text =  this.totallivesupscorecount;
+		    this.totalscoresup.text = this.totalscoresupscorecount;
+		    this.totalkarmadown.text = this.totalkarmadownscorecount;
+		    this.totallivesdown.text = this.totallivesdownscorecount;
+		    this.totalscoredown.text = this.totalscoredownscorecount;
+		    if (!updated)
+		    {
+		    	var stylebig = null;
+		    	var posy = 0;
+		    	if (this.totalscoredownscorecount>this.totalscoresupscorecount)
+		    	{
+	    			stylebig = { font: "bold 34px Arial", fill: "#dd5e00", align: "left" };
+	    			posy = 540;
+		    	}
+		    	else
+	    		{
+				    stylebig = { font: "bold 34px Arial", fill: "#0c5cf5", align: "left" };
+				    posy = 300;
+	    		}
+			    this.winner = objPhaser.add.text(objPhaser.world.centerX-330, posy, "WINNER!", stylebig);
+			    objPhaser.add.tween(this.winner).to( { alpha: 0}, 250, Phaser.Easing.Linear.None, true, 0, 3, true);
+					this.btnMenu = objPhaser.add.button(objPhaser.world.centerX, objPhaser.world.centerY + this.finalscore.height / 2, Constants.ASSET_BTN_MENU, this.onMenuClick, this);
+					this.btnMenu.anchor.set(0.5);
+		    }
+		  }
+			return;
+		}
 		this.gametime++;
 		if (this.itemManagerDown != null)
 		{
@@ -268,8 +389,12 @@ Game = ring.create([], {
 			this.templedown.update((doscroll) ? this.gamespeed : 0);
 			if (this.heroup.sprite.x>this.templeup.sprite.x + this.templeup.sprite.width / 3)
 			{
-				//GANASTE
-				objPhaser.state.start(Constants.STATE_MENU);
+				this.finalscore = objPhaser.add.sprite(Constants.STATE_SCREEN_WIDTH / 2, Constants.STATE_SCREEN_HEIGHT / 2, Constants.ASSET_FINAL_SCORE);
+				this.finalscore.scale = new PIXI.Point(0,0);
+				this.finalscore.anchor.setTo(0.5, 0.5);
+				objPhaser.add.tween(this.finalscore).to( { angle: 359 }, 250, Phaser.Easing.Linear.None, true, 0, 2);
+    		var objTween = objPhaser.add.tween(this.finalscore.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Linear.None, true);
+    		objTween.onComplete.addOnce(this.finishScoreAnimation, this);
 			}
 		}
 		if (doscroll)
@@ -302,6 +427,11 @@ Game = ring.create([], {
 		{
 			this.collisionItem(false,this.itemsdown,itemcollision);
 		}
+	},
+
+	onMenuClick: function()
+	{
+		objPhaser.state.start(Constants.STATE_MENU);
 	},
 
 	toString: function()

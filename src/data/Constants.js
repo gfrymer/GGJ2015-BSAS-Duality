@@ -6,6 +6,9 @@ Constants.STATE_SCREEN_HEIGHT = 720;
 Constants.STATE_MENU = "menu";
 Constants.STATE_GAME = "game";
 Constants.STATE_GAME_OVER = "game_over";
+Constants.STATE_CREDITS = "credits";
+Constants.STATE_STORY = "story";
+Constants.STATE_HELP = "help";
 
 Constants.GAME_SPEED = 5;
 
@@ -47,6 +50,11 @@ Constants.HERO_RECTANGLE_COLLISION_SHRINK = 5;
 Constants.HERO_TOP_JUMP = 180;
 
 Constants.ASSET_BTN_PLAY = "btn_play";
+Constants.ASSET_BTN_MENU = "btn_menu";
+Constants.ASSET_BTN_STORY = "btn_story";
+Constants.ASSET_BTN_HELP = "btn_help";
+Constants.ASSET_BTN_CREDITS = "btn_credits";
+Constants.ASSET_TITLE = "title";
 
 Constants.ASSET_BG_MUSIC = "bgMusic";
 
@@ -71,6 +79,9 @@ Constants.ASSET_BAD_KARMA_ICON = "bad_karma";
 Constants.ASSET_LIFE_ICON = "life_icon";
 Constants.ASSET_SHIELD_ICON = "shield_icon";
 Constants.ASSET_MONSTER_ICON = "monster_icon";
+
+Constants.ASSET_FINAL_SCORE = "finalscore";
+Constants.ASSET_CREDITS = "credits";
 
 Constants.ASSET_WHITE_PARTICLE = "white_particle";
 Constants.ASSET_BLUE_PARTICLE = "blue_particle";

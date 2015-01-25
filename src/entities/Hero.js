@@ -36,7 +36,7 @@ Hero = ring.create([AbstractEntity], {
 		this.life = [];
 		for (i=0;i<this.lives;i++)
 		{
-			this.life[i] = objPhaser.add.sprite( ((this.lifewidth * 1.1) * (i + 1))  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE );
+			this.life[i] = objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
 		}
 
 		if(this.isup)
@@ -129,7 +129,7 @@ Hero = ring.create([AbstractEntity], {
 		}
 
 		this.lives++;
-		this.life.push(objPhaser.add.sprite((this.lifewidth * 1.1) * this.lives  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE))
+		this.life.push(objPhaser.add.sprite(((this.lives) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
 	},
 	
 	substractKarma: function()

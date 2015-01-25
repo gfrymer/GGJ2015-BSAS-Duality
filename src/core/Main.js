@@ -7,11 +7,17 @@ Main = function()
 
 Main.prototype.preload = function()
 {
+	objPhaser.load.image(Constants.ASSET_TITLE, "assets/title.png");
 	objPhaser.load.image(Constants.ASSET_HERO_UP, "assets/hero1.png");
 	objPhaser.load.image(Constants.ASSET_HERO_DOWN, "assets/hero2.png");
 	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/btnPLay.png");
+	objPhaser.load.image(Constants.ASSET_BTN_MENU, "assets/btnmenu.png");
+	objPhaser.load.image(Constants.ASSET_BTN_CREDITS, "assets/btncredits.png");
+	objPhaser.load.image(Constants.ASSET_BTN_HELP, "assets/btnhelp.png");
+	objPhaser.load.image(Constants.ASSET_BTN_STORY, "assets/btnstory.png");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
+	objPhaser.load.image(Constants.ASSET_CREDITS, "assets/credits.png");
 
 	objPhaser.load.image(Constants.ASSET_HUD, "assets/hud.png");
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_FLYING, "assets/bar_flying.png");
@@ -37,6 +43,8 @@ Main.prototype.preload = function()
 	objPhaser.load.spritesheet(Constants.ASSET_BOOSTER_FX, "assets/booster_fx.png", 150, 150);
 
 	objPhaser.load.audio(Constants.ASSET_BG_MUSIC, ["assets/bgMusic.mp3"]);
+
+	objPhaser.load.image(Constants.ASSET_FINAL_SCORE, "assets/finalscore.png");
 }
 
 Main.prototype.create = function()
@@ -48,6 +56,9 @@ Main.prototype.create = function()
 	objPhaser.state.add(Constants.STATE_MENU, Menu);
 	objPhaser.state.add(Constants.STATE_GAME, Game);
 	objPhaser.state.add(Constants.STATE_GAME_OVER, GameOver);
+	objPhaser.state.add(Constants.STATE_CREDITS, Credits);
+	objPhaser.state.add(Constants.STATE_HELP, Help);
+	objPhaser.state.add(Constants.STATE_STORY, Story);
 
 	objPhaser.state.start(Constants.STATE_MENU);
 }
