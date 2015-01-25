@@ -82,6 +82,8 @@ Constants.ASSET_MONSTER_ICON = "monster_icon";
 
 Constants.ASSET_FINAL_SCORE = "finalscore";
 Constants.ASSET_CREDITS = "credits";
+Constants.ASSET_HELP = "help";
+Constants.ASSET_GAME_OVER = "gameover";
 
 Constants.ASSET_WHITE_PARTICLE = "white_particle";
 Constants.ASSET_BLUE_PARTICLE = "blue_particle";

@@ -27,7 +27,7 @@ Hero = ring.create([AbstractEntity], {
 		this.shieldtime = 0;
 		
 		this.lives = Constants.TOTAL_LIVES;
-		this.karma = Constants.TOTAL_KARMA;
+		this.karma = Constants.TOTAL_KARMA / 2;
 
 		this.flyingpower.updateKarma(this.karma);
 
@@ -223,10 +223,19 @@ Hero = ring.create([AbstractEntity], {
 			}
 		}
 
-		if (this.ofsy>0)
+		var speeddown = 1;
+		if ((!this.upKey.isDown) || (!this.flyingpower.hasFlyingPower()))
 		{
-			this.ofsy--;
-			this.sprite.y++;
+				speeddown = 2;
+		}
+
+		for (i=0;i<speeddown;i++)
+		{
+			if (this.ofsy>0)
+			{
+				this.ofsy--;
+				this.sprite.y++;
+			}
 		}
 		
 		this.anim++;

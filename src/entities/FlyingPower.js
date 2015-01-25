@@ -57,13 +57,18 @@ FlyingPower = ring.create([AbstractEntity], {
 
 	decrement:function()
 	{
-		this.flyingTotal -= 3.5;
+		this.flyingTotal -= 2.5;
 		if (this.flyingTotal < 0)
 		{
 			this.flyingTotal = 0;
 			return false;
 		}
 		return true;
+	},
+
+	hasFlyingPower:function()
+	{
+		return (this.flyingTotal > 0);
 	},
 
 	updateKarma: function(currentKarma)

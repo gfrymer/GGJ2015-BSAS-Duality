@@ -9,6 +9,7 @@ Game = ring.create([], {
 	{
 		this.btnMenu = null;
 
+		this.gameover = null;
 		this.finalscore = null;
     this.totalkarmaup = null;
     this.totallivesup = null;
@@ -119,7 +120,7 @@ Game = ring.create([], {
 		var difx = item.sprite.x - wheretox;
 		item.sprite.todown = todown;
 		item.sprite.item = item;
-		var objTween = objPhaser.add.tween(item.sprite).to({y: ((dify > 0) ? '-' : '+') + Math.abs(dify),x: ((difx > 0) ? '-' : '+') + Math.abs(difx), alpha: 0.25},quick ? 100 : 1000,Phaser.Easing.Circular.In,true);
+		var objTween = objPhaser.add.tween(item.sprite).to({y: ((dify > 0) ? '-' : '+') + Math.abs(dify),x: ((difx > 0) ? '-' : '+') + Math.abs(difx), alpha: 0.8},quick ? 100 : 500,Phaser.Easing.Circular.In,true);
 		objTween.onComplete.addOnce(this.removeItem, this);
 	},
 
@@ -232,7 +233,12 @@ Game = ring.create([], {
 			{
 				if (heromonster.loseLife())
 				{
-					objPhaser.state.start(Constants.STATE_GAME_OVER);
+					this.gameover = objPhaser.add.sprite(Constants.STATE_SCREEN_WIDTH / 2, Constants.STATE_SCREEN_HEIGHT / 2, Constants.ASSET_GAME_OVER);
+					this.gameover.scale = new PIXI.Point(0,0);
+					this.gameover.anchor.setTo(0.5, 0.5);
+					objPhaser.add.tween(this.gameover).to( { angle: 359 }, 250, Phaser.Easing.Linear.None, true, 0, 2);
+	    		var objTween = objPhaser.add.tween(this.gameover.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Linear.None, true);
+	    		objTween.onComplete.addOnce(this.finishGameOverAnimation, this);
 				}
 			}
 			rmv[1] = -1;
@@ -288,9 +294,19 @@ Game = ring.create([], {
     this.totalscoredownscorecount = 0;
 	},
 
+	finishGameOverAnimation: function(gameover)
+	{
+		this.btnMenu = objPhaser.add.button(objPhaser.world.centerX, objPhaser.world.centerY + this.gameover.height / 2 + 50, Constants.ASSET_BTN_MENU, this.onMenuClick, this);
+		this.btnMenu.anchor.set(0.5);
+	},
+
 	update: function()
 	{
 		if (this.btnMenu)
+		{
+			return;
+		}
+		if (this.gameover)
 		{
 			return;
 		}
@@ -351,7 +367,7 @@ Game = ring.create([], {
 	    		}
 			    this.winner = objPhaser.add.text(objPhaser.world.centerX-330, posy, "WINNER!", stylebig);
 			    objPhaser.add.tween(this.winner).to( { alpha: 0}, 250, Phaser.Easing.Linear.None, true, 0, 3, true);
-					this.btnMenu = objPhaser.add.button(objPhaser.world.centerX, objPhaser.world.centerY + this.finalscore.height / 2, Constants.ASSET_BTN_MENU, this.onMenuClick, this);
+					this.btnMenu = objPhaser.add.button(objPhaser.world.centerX, objPhaser.world.centerY + this.finalscore.height / 2 + 50, Constants.ASSET_BTN_MENU, this.onMenuClick, this);
 					this.btnMenu.anchor.set(0.5);
 		    }
 		  }

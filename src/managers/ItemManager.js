@@ -10,7 +10,7 @@ ItemManager = ring.create([], {
 	{
 		this.itemContainer = itemContainer;
 
-		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA_ICON, Constants.ASSET_SHIELD_ICON, Constants.ASSET_MONSTER_ICON);
+		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA_ICON, Constants.ASSET_BAD_KARMA_ICON, Constants.ASSET_SHIELD_ICON, Constants.ASSET_SHIELD_ICON, Constants.ASSET_MONSTER_ICON, Constants.ASSET_MONSTER_ICON, Constants.ASSET_MONSTER_ICON, Constants.ASSET_MONSTER_ICON);
 
 		this.itemsStack = new Array();
 		this.nextItemTime = this.getRandomTime();
@@ -88,6 +88,7 @@ ItemManager = ring.create([], {
 
 					break;
 				case Constants.ASSET_MONSTER:
+					positions.concat(new Array(ItemManager.POSITION_MIDDLE, ItemManager.POSITION_BOTTOM));
 					item = new Monster();
 
 					break;
