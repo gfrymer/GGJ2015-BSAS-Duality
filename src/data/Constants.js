@@ -90,6 +90,8 @@ Constants.ASSET_LIFE_ICON = "life_icon";
 Constants.ASSET_SHIELD_ICON = "shield_icon";
 Constants.ASSET_MONSTER_ICON = "monster_icon";
 
+Constants.ASSET_SPLASH = "splash";
+
 Constants.ASSET_FINAL_SCORE = "finalscore";
 Constants.ASSET_CREDITS = "credits";
 Constants.ASSET_HELP = "help";

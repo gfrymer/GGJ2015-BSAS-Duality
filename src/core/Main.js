@@ -7,14 +7,15 @@ Main = function()
 
 Main.prototype.preload = function()
 {
-	objPhaser.load.image(Constants.ASSET_TITLE, "assets/title.png");
+	objPhaser.load.image(Constants.ASSET_TITLE, "assets/dualtitle.png");
 	objPhaser.load.image(Constants.ASSET_HERO_UP, "assets/hero1.png");
 	objPhaser.load.image(Constants.ASSET_HERO_DOWN, "assets/hero2.png");
-	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/btnPLay.png");
+	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/playbtn.png");
 	objPhaser.load.image(Constants.ASSET_BTN_MENU, "assets/btnmenu.png");
-	objPhaser.load.image(Constants.ASSET_BTN_CREDITS, "assets/btncredits.png");
-	objPhaser.load.image(Constants.ASSET_BTN_HELP, "assets/btnhelp.png");
-	objPhaser.load.image(Constants.ASSET_BTN_STORY, "assets/btnstory.png");
+	objPhaser.load.image(Constants.ASSET_BTN_CREDITS, "assets/creditsbtn.png");
+	objPhaser.load.image(Constants.ASSET_BTN_HELP, "assets/helpbtn.png");
+	objPhaser.load.image(Constants.ASSET_BTN_STORY, "assets/storybtn.png");
+	objPhaser.load.image(Constants.ASSET_SPLASH, "assets/splash.png");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
 	objPhaser.load.image(Constants.ASSET_CREDITS, "assets/credits.png");

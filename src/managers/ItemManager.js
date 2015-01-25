@@ -123,7 +123,7 @@ ItemManager.POSITION_MIDDLE = "middle";
 ItemManager.POSITION_BOTTOM = "bottom";
 
 ItemManager.TIME_MIN = Phaser.Timer.SECOND;
-ItemManager.TIME_MAX = Phaser.Timer.SECOND * 5;
+ItemManager.TIME_MAX = Phaser.Timer.SECOND * 3;
 
 ItemManager.TIME_MIN_SPAWN = Phaser.SECOND;
 
