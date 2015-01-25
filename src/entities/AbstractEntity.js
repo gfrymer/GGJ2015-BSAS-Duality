@@ -15,7 +15,7 @@ AbstractEntity = ring.create([], {
 	{
 		if (this.sprite)
 		{
-			objPhaser.world.remove(this.sprite);
+			this.sprite.parent.remove(this.sprite);
 		}
 	},
 	
