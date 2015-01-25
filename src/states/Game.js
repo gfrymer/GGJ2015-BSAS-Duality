@@ -21,8 +21,8 @@ Game = ring.create([], {
 		this.itemManagerUp = new ItemManager();
 		this.itemManagerDown = new ItemManager();
 
-		//this.bgMusic = objPhaser.add.audio(Constants.BG_MUSIC);
-		//this.bgMusic.play()
+		this.bgMusic = objPhaser.add.audio(Constants.ASSET_BG_MUSIC);
+		this.bgMusic.play('', 0, 0, true);
 	},
 
 	positionItems:function(isup,items)
@@ -90,7 +90,7 @@ Game = ring.create([], {
 		var difx = item.sprite.x - wheretox;
 		item.sprite.todown = todown;
 		item.sprite.item = item;
-		var objTween = objPhaser.add.tween(item.sprite).to({y: ((dify > 0) ? '-' : '+') + Math.abs(dify),x: ((difx > 0) ? '-' : '+') + Math.abs(difx)},quick ? 100 : 1000,Phaser.Easing.Circular.In,true);
+		var objTween = objPhaser.add.tween(item.sprite).to({y: ((dify > 0) ? '-' : '+') + Math.abs(dify),x: ((difx > 0) ? '-' : '+') + Math.abs(difx), alpha: 0.25},quick ? 100 : 1000,Phaser.Easing.Circular.In,true);
 		objTween.onComplete.addOnce(this.removeItem, this);
 	},
 
@@ -153,6 +153,8 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_LIFE_ICON)
 		{
 			hero.moreLife();
+			hero.addLifeParticles();
+
 			heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_MONSTER_ICON)
@@ -171,11 +173,14 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_SHIELD_ICON)
 		{
 			hero.setShield(true);
+			hero.addShieldParticles();
+
 			heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_BAD_KARMA_ICON)
 		{
 			hero.substractKarma();
+			hero.addBadKarmaParticles();
 		}
 	},
 	

@@ -71,3 +71,14 @@ Constants.ASSET_BAD_KARMA_ICON = "bad_karma";
 Constants.ASSET_LIFE_ICON = "life_icon";
 Constants.ASSET_SHIELD_ICON = "shield_icon";
 Constants.ASSET_MONSTER_ICON = "monster_icon";
+
+Constants.ASSET_WHITE_PARTICLE = "white_particle";
+Constants.ASSET_BLUE_PARTICLE = "blue_particle";
+Constants.ASSET_RED_PARTICLE = "red_particle";
+Constants.ASSET_GREEN_PARTICLE = "green_particle";
+
+Constants.ASSET_SHIELD_PARTICLE = "shield_particle";
+Constants.ASSET_LIFE_PARTICLE = "life_particle";
+Constants.ASSET_KARMA_PARTICLE = "karma_particle";
+
+Constants.ASSET_BOOSTER_FX = "booster_fx";

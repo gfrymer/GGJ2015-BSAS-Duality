@@ -36,6 +36,42 @@ Hero = ring.create([AbstractEntity], {
 		{
 			this.life[i] = objPhaser.add.sprite( ((this.lifewidth * 1.1) * (i + 1))  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE );
 		}
+
+		if(this.isup)
+		{
+			var particlesX = this.sprite.x + this.sprite.width / 2;
+			var particlesY = this.sprite.y + this.sprite.height;
+			var particlesWidth = this.sprite.width / 2;
+			var particlesGravity = -200;
+		}
+		else
+		{
+			var particlesX = this.sprite.x + this.sprite.width / 2;
+			var particlesY = this.sprite.y;
+			var particlesWidth = this.sprite.width / 2;
+			var particlesGravity = 200;
+		}
+
+		this.emitterLife = objPhaser.add.emitter(particlesX, particlesY, particlesWidth);
+		this.emitterLife.makeParticles(Constants.ASSET_LIFE_PARTICLE);
+		this.emitterLife.gravity = particlesGravity;
+		this.emitterLife.setAlpha(0.3, 0.5);
+
+		this.emitterShield = objPhaser.add.emitter(particlesX, particlesY, particlesWidth);
+		this.emitterShield.makeParticles(Constants.ASSET_SHIELD_PARTICLE);
+		this.emitterShield.gravity = particlesGravity;
+		this.emitterShield.setAlpha(0.3, 0.5);
+
+		this.emitterBadKarma = objPhaser.add.emitter(particlesX, particlesY, particlesWidth);
+		this.emitterBadKarma.makeParticles(Constants.ASSET_KARMA_PARTICLE);
+		this.emitterBadKarma.gravity = particlesGravity;
+		this.emitterBadKarma.setAlpha(0.1, 0.5);
+
+		this.boosterFx = objPhaser.add.sprite(0, 0, Constants.ASSET_BOOSTER_FX);
+		this.boosterFx.anchor.set(0.25);
+		this.boosterFx.animations.add("fx");
+		//this.boosterFx.animations.play("fx", 30, true);
+		this.sprite.addChild(this.boosterFx);
 	},
 
 	hasShield: function()
@@ -116,7 +152,38 @@ Hero = ring.create([AbstractEntity], {
 		this.flyingpower.updateKarma(this.karma);
 	},
 	
-	
+	addLifeParticles: function()
+	{
+		this.boosterFx.animations.play("fx", 30, false);
+
+		if(this.isup){ var particlesY = this.sprite.y + this.sprite.height; }
+		else{ var particlesY = this.sprite.y; }
+
+		this.emitterLife.y = particlesY;
+		//this.emitterLife.explode(2000, 500);
+	},
+
+	addShieldParticles: function()
+	{
+		this.boosterFx.animations.play("fx", 30, false);
+
+		if(this.isup){ var particlesY = this.sprite.y + this.sprite.height; }
+		else{ var particlesY = this.sprite.y; }
+		
+		this.emitterShield.y = particlesY;
+		//this.emitterShield.explode(2000, 500);
+	},
+
+	addBadKarmaParticles: function()
+	{
+		this.boosterFx.animations.play("fx", 30, false);
+
+		if(this.isup){ var particlesY = this.sprite.y + this.sprite.height; }
+		else{ var particlesY = this.sprite.y; }
+		
+		this.emitterBadKarma.y = particlesY;
+		//this.emitterBadKarma.explode(2000, 500);
+	},
 
 	update: function(items,gamespeed)
 	{

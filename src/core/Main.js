@@ -25,7 +25,18 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_MONSTER_ICON, "assets/monsterIcon.png");
 	objPhaser.load.image(Constants.ASSET_SHIELD_ICON, "assets/shieldIcon.png");
 
-	//objPhaser.load.audio(Constants.ASSET_BG_MUSIC, "assets/bgMusic.mp3");
+	objPhaser.load.image(Constants.ASSET_WHITE_PARTICLE, "assets/white_particle.png");
+	objPhaser.load.image(Constants.ASSET_RED_PARTICLE, "assets/red_particle.png");
+	objPhaser.load.image(Constants.ASSET_GREEN_PARTICLE, "assets/green_particle.png");
+	objPhaser.load.image(Constants.ASSET_BLUE_PARTICLE, "assets/blue_particle.png");
+
+	objPhaser.load.image(Constants.ASSET_LIFE_PARTICLE, "assets/life_particle.png");
+	objPhaser.load.image(Constants.ASSET_SHIELD_PARTICLE, "assets/shield_particle.png");
+	objPhaser.load.image(Constants.ASSET_KARMA_PARTICLE, "assets/karma_particle.png");
+
+	objPhaser.load.spritesheet(Constants.ASSET_BOOSTER_FX, "assets/booster_fx.png", 150, 150);
+
+	objPhaser.load.audio(Constants.ASSET_BG_MUSIC, ["assets/bgMusic.mp3"]);
 }
 
 Main.prototype.create = function()
