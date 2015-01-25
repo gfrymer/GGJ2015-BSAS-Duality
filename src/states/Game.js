@@ -13,13 +13,17 @@ Game = ring.create([], {
 		this.itemsdown = [];
 		this.scup = new Scroll(Constants.ASSET_BACKGROUND_UP,0,this.gamespeed);
 		this.scdown = new Scroll(Constants.ASSET_BACKGROUND_DOWN,Constants.DOWN_Y_OFFSET,this.gamespeed);
-		this.heroup = new Hero(true, Constants.ASSET_HERO_UP, Constants.HERO_Y_OFFSET);
-		this.herodown = new Hero(false, Constants.ASSET_HERO_DOWN, Constants.HERO_Y_OFFSET + Constants.DOWN_Y_OFFSET);
+
+		this.groupItems = objPhaser.add.group();
+		this.groupHud = objPhaser.add.group();
+
+		this.heroup = new Hero(true, Constants.ASSET_HERO_UP, Constants.HERO_Y_OFFSET, this.groupHud);
+		this.herodown = new Hero(false, Constants.ASSET_HERO_DOWN, Constants.HERO_Y_OFFSET + Constants.DOWN_Y_OFFSET, this.groupHud);
 		this.templeup = null,
 		this.templedown = null,
 
-		this.itemManagerUp = new ItemManager();
-		this.itemManagerDown = new ItemManager();
+		this.itemManagerUp = new ItemManager(this.groupItems);
+		this.itemManagerDown = new ItemManager(this.groupItems);
 
 		this.bgMusic = objPhaser.add.audio(Constants.ASSET_BG_MUSIC);
 		this.bgMusic.play('', 0, 0, true);
@@ -104,7 +108,7 @@ Game = ring.create([], {
 
 	removeItemNow: function(sprite)
 	{
-		objPhaser.world.remove(sprite);
+		this.groupItems.remove(sprite);
 	},
 
 	removeItem: function(sprite)
@@ -142,7 +146,7 @@ Game = ring.create([], {
 		else
 		{
 			this.doItemAction(sprite.todown,sprite.item.type);
-			objPhaser.world.remove(sprite);
+			this.groupItems.remove(sprite);
 		}
 	},
 

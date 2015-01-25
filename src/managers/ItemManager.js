@@ -6,8 +6,10 @@ ItemManager = ring.create([], {
 	currentTime: null,
 	nextItemTime: null,
 
-	constructor: function()
+	constructor: function(itemContainer)
 	{
+		this.itemContainer = itemContainer;
+
 		this.itemTypes = new Array(Constants.ASSET_LIFE_ICON, Constants.ASSET_BAD_KARMA_ICON, Constants.ASSET_SHIELD_ICON, Constants.ASSET_MONSTER_ICON);
 
 		this.itemsStack = new Array();
@@ -94,6 +96,7 @@ ItemManager = ring.create([], {
 			var rnd = parseInt(Math.random() * positions.length);
 			var pos = positions.splice(rnd, 1)[0];
 			item.setPosition(pos);
+			this.itemContainer.add(item.sprite);
 
 			roundItems.push(item);
 		}

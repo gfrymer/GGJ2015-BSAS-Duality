@@ -1,16 +1,18 @@
 Hero = ring.create([AbstractEntity], {
 
-	constructor: function(isup, heroImage, ypos)
+	constructor: function(isup, heroImage, ypos, hudContainer)
 	{
+		this.hudContainer = hudContainer;
+
 		if (isup)
 		{
 			this.upKey = objPhaser.input.keyboard.addKey(Phaser.Keyboard.UP);
-			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET,Constants.HERO_FLYING_POWER);
+			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET,Constants.HERO_FLYING_POWER, this.hudContainer);
 		}
 		else
 		{
 		  this.upKey = objPhaser.input.keyboard.addKey(Phaser.Keyboard.W);
-			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET + Constants.DOWN_Y_OFFSET, Constants.HERO_FLYING_POWER);
+			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET + Constants.DOWN_Y_OFFSET, Constants.HERO_FLYING_POWER, this.hudContainer);
 		}
 
 		this.isup=isup;
