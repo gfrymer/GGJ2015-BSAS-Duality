@@ -1,5 +1,7 @@
 Game = ring.create([], {
 
+	isplayingmenu:false,
+	
 	preload: function()
 	{
 
@@ -56,12 +58,18 @@ Game = ring.create([], {
 
 		this.bgMusic = objPhaser.add.audio(Constants.ASSET_BG_MUSIC);
 		this.bgMusic.play('', 0, 1, true);
+		this.prevDoScroll = false;
 	},
 
 	updateScrollBar:function()
 	{
 		var tot = this.scrollbar.width - this.smallheroes.width * 2;
-		this.smallheroes.x = (this.scrollbar.x - this.scrollbar.width / 2) + (this.gametime * tot / Constants.GAME_TIME_TEMPLE);
+		if (this.gametime<Constants.GAME_TIME_TEMPLE)
+		{
+			this.smallheroes.x = (this.scrollbar.x - this.scrollbar.width / 2) + (this.gametime * tot / Constants.GAME_TIME_TEMPLE);
+		}
+		this.smallheroes.bringToTop();
+		this.scrollbar.bringToTop();
 	},
 	
 	positionItems:function(isup,items)
@@ -115,10 +123,13 @@ Game = ring.create([], {
 		}
 	},
 
-	fadeItemAndOut: function(item)
+	fadeItemAndOut: function(item,andout)
 	{
 		var objTween = objPhaser.add.tween(item.sprite).to({alpha: 0},200,Phaser.Easing.Default,true);
-		objPhaser.add.tween(item.sprite).to({x: 0},350,Phaser.Easing.Default,true);
+		if (andout)
+		{
+			objPhaser.add.tween(item.sprite).to({x: 0},350,Phaser.Easing.Default,true);
+		}
 		objTween.onComplete.addOnce(this.removeItemNow, this);
 	},
 	
@@ -284,7 +295,7 @@ Game = ring.create([], {
 		{
 			if (i!=rmv[1])
 			{
-				this.fadeItemAndOut(items[rmv[0]][i]);
+				this.fadeItemAndOut(items[rmv[0]][i],true);
 			}
 		}
 		items.splice(rmv[0],1);
@@ -293,10 +304,10 @@ Game = ring.create([], {
 	finishScoreAnimation: function(score)
 	{
 		var text = "0";
-    var styleup = { font: "bold 30px Arial", fill: "#0c5cf5", align: "right" };
-    var styledown = { font: "bold 30px Arial", fill: "#dd5e00", align: "right" };
-    var styleupbig = { font: "bold 34px Arial", fill: "#0c5cf5", align: "right" };
-    var styledownbig = { font: "bold 34px Arial", fill: "#dd5e00", align: "right" };
+    var styleup = { font: "bold 30px Arial", fill: "#dd5e00", align: "right" };
+    var styledown = { font: "bold 30px Arial", fill: "#0c5cf5", align: "right" };
+    var styleupbig = { font: "bold 34px Arial", fill: "#dd5e00", align: "right" };
+    var styledownbig = { font: "bold 34px Arial", fill: "#0c5cf5", align: "right" };
     this.totalkarmaup = objPhaser.add.text(objPhaser.world.centerX+200, 160, text, styleup);
     this.totallivesup = objPhaser.add.text(objPhaser.world.centerX+200, 210, text, styleup);
     this.totalscoresup = objPhaser.add.text(objPhaser.world.centerX+200, 270, text, styleupbig);
@@ -304,12 +315,12 @@ Game = ring.create([], {
     this.totallivesdown = objPhaser.add.text(objPhaser.world.centerX+200, 450, text, styledown);
     this.totalscoredown = objPhaser.add.text(objPhaser.world.centerX+200, 510, text, styledownbig);
 
-    this.totalkarmascore = 200;
-    this.totallivesupscore = 100;
-    this.totalscoresupscore = 300;
-    this.totalkarmadownscore = 200;
-    this.totallivesdownscore = 100;
-    this.totalscoredownscore = 200;
+    this.totalkarmascore = this.heroup.karma * Constants.POINTS_PER_KARMA;
+    this.totallivesupscore = this.heroup.lives * Constants.POINTS_PER_LIFE;
+    this.totalscoresupscore = this.totalkarmascore + this.totallivesupscore;
+    this.totalkarmadownscore = this.herodown.karma * Constants.POINTS_PER_KARMA;
+    this.totallivesdownscore = this.herodown.lives * Constants.POINTS_PER_LIFE;
+    this.totalscoredownscore = this.totallivesdownscore + this.totalkarmadownscore;
 
     this.totalkarmascorecount = 0;
     this.totallivesupscorecount = 0;
@@ -317,6 +328,10 @@ Game = ring.create([], {
     this.totalkarmadownscorecount = 0;
     this.totallivesdownscorecount = 0;
     this.totalscoredownscorecount = 0;
+
+		this.fxScore = objPhaser.add.audio(Constants.ASSET_FX_SCORE);
+		this.fxScore.play('', 0, 1, true);
+
 	},
 
 	finishGameOverAnimation: function(gameover)
@@ -343,32 +358,56 @@ Game = ring.create([], {
 				if (this.totalkarmascorecount<this.totalkarmascore)
 				{
 					updated = true;
-					this.totalkarmascorecount++;
+					this.totalkarmascorecount+=Constants.POINTS_SPEED;
+					if (this.totalkarmascorecount>this.totalkarmascore)
+					{
+						this.totalkarmascorecount = this.totalkarmascore;
+					}
 				}
 				if (this.totallivesupscorecount<this.totallivesupscore)
 				{
 					updated = true;
-					this.totallivesupscorecount++;
+					this.totallivesupscorecount+=Constants.POINTS_SPEED;
+					if (this.totallivesupscorecount>this.totallivesupscore)
+					{
+						this.totallivesupscorecount = this.totallivesupscore;
+					}
 				}
 				if (this.totalscoresupscorecount<this.totalscoresupscore)
 				{
 					updated = true;
-					this.totalscoresupscorecount++;
+					this.totalscoresupscorecount+=Constants.POINTS_SPEED;
+					if (this.totalscoresupscorecount>this.totalscoresupscore)
+					{
+						this.totalscoresupscorecount = this.totalscoresupscore;
+					}
 				}
 				if (this.totalkarmadownscorecount<this.totalkarmadownscore)
 				{
 					updated = true;
-					this.totalkarmadownscorecount++;
+					this.totalkarmadownscorecount+=Constants.POINTS_SPEED;
+					if (this.totalkarmadownscorecount>this.totalkarmadownscore)
+					{
+						this.totalkarmadownscorecount = this.totalkarmadownscore;
+					}
 				}
 				if (this.totallivesdownscorecount<this.totallivesdownscore)
 				{
 					updated = true;
-					this.totallivesdownscorecount++;
+					this.totallivesdownscorecount+=Constants.POINTS_SPEED;
+					if (this.totallivesdownscorecount>this.totallivesdownscore)
+					{
+						this.totallivesdownscorecount = this.totallivesdownscore;
+					}
 				}
 				if (this.totalscoredownscorecount<this.totalscoredownscore)
 				{
 					updated = true;
-					this.totalscoredownscorecount++;
+					this.totalscoredownscorecount+=Constants.POINTS_SPEED;
+					if (this.totalscoredownscorecount>this.totalscoredownscore)
+					{
+						this.totalscoredownscorecount = this.totalscoredownscore;
+					}
 				}
 		    this.totalkarmaup.text = this.totalkarmascorecount;
 		    this.totallivesup.text =  this.totallivesupscorecount;
@@ -378,6 +417,7 @@ Game = ring.create([], {
 		    this.totalscoredown.text = this.totalscoredownscorecount;
 		    if (!updated)
 		    {
+		    	this.fxScore.stop();
 		    	var stylebig = null;
 		    	var posy = 0;
 		    	if (this.totalscoredownscorecount>this.totalscoresupscorecount)
@@ -409,14 +449,19 @@ Game = ring.create([], {
 			this.itemManagerUp.update();
 		}
 
+		if (this.gametime==Constants.GAME_TIME_TEMPLE + 200)
+		{
+			this.templeup.openDoors();
+			this.templedown.openDoors();
+		}
 		if (this.gametime==Constants.GAME_TIME_TEMPLE)
 		{
 			this.templeup = new Temple();
 			this.templeup.sprite.x = Constants.STATE_SCREEN_WIDTH;
-			this.templeup.sprite.y = Constants.MINI_SCREEN_HEIGHT - this.templeup.sprite.height;
+			this.templeup.sprite.y = Constants.MINI_SCREEN_HEIGHT - this.templeup.sprite.height + 30;
 			this.templedown = new Temple();
 			this.templedown.sprite.x = Constants.STATE_SCREEN_WIDTH;
-			this.templedown.sprite.y = Constants.MINI_SCREEN_HEIGHT - this.templeup.sprite.height + Constants.DOWN_Y_OFFSET;
+			this.templedown.sprite.y = Constants.MINI_SCREEN_HEIGHT - this.templeup.sprite.height + Constants.DOWN_Y_OFFSET + 30;
 			this.heroup.sprite.bringToTop();
 			this.herodown.sprite.bringToTop();
 		}
@@ -455,6 +500,28 @@ Game = ring.create([], {
 			}
 			this.scup.update();
 			this.scdown.update();
+			this.prevDoScroll = true;
+		}
+		else
+		{
+			if (this.prevDoScroll)
+			{
+				this.prevDoScroll = false;
+				for (i=0;i<this.itemsup.length;i++)
+				{
+					for (j=0;j<this.itemsup[i].length;j++)
+					{
+						this.fadeItemAndOut(this.itemsup[i][j],false);
+					}
+				}
+				for (i=0;i<this.itemsdown.length;i++)
+				{
+					for (j=0;j<this.itemsdown[i].length;j++)
+					{
+						this.fadeItemAndOut(this.itemsdown[i][j],false);
+					}
+				}
+			}
 		}
 		this.updateItems(this.itemsup,(doscroll) ? this.gamespeed : 0);
 		this.updateItems(this.itemsdown,(doscroll) ? this.gamespeed : 0);
@@ -462,12 +529,18 @@ Game = ring.create([], {
 		var itemcollision = this.heroup.update(this.itemsup,(doscroll) ? 0 : this.gamespeed);
 		if (itemcollision)
 		{
-			this.collisionItem(true,this.itemsup,itemcollision);
+			if (doscroll)
+			{
+				this.collisionItem(true,this.itemsup,itemcollision);
+			}
 		}
 		var itemcollision = this.herodown.update(this.itemsdown,(doscroll) ? 0 : this.gamespeed);
 		if (itemcollision)
 		{
-			this.collisionItem(false,this.itemsdown,itemcollision);
+			if (doscroll)
+			{
+				this.collisionItem(false,this.itemsdown,itemcollision);
+			}
 		}
 	},
 

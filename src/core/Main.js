@@ -18,6 +18,7 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
 	objPhaser.load.image(Constants.ASSET_CREDITS, "assets/credits.png");
+	objPhaser.load.image(Constants.ASSET_STORY, "assets/story.png");
 	objPhaser.load.image(Constants.ASSET_HELP, "assets/help.png");
 	objPhaser.load.image(Constants.ASSET_GAME_OVER, "assets/gameover.png");
 	
@@ -28,7 +29,7 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_FLYING, "assets/bar_flying.png");
 	objPhaser.load.image(Constants.ASSET_HUD_BAR_KARMA, "assets/bar_karma.png");
 	objPhaser.load.image(Constants.ASSET_LIFE, "assets/life.png");
-	objPhaser.load.image(Constants.ASSET_TEMPLE, "assets/temple.png");
+	objPhaser.load.spritesheet(Constants.ASSET_TEMPLE, "assets/temple.png", 292, 356);
 
 	objPhaser.load.spritesheet(Constants.ASSET_MONSTER, "assets/monster.png", 100, 100);
 	objPhaser.load.image(Constants.ASSET_BAD_KARMA_ICON, "assets/karmaIcon.png");
@@ -54,6 +55,7 @@ Main.prototype.preload = function()
 	objPhaser.load.audio(Constants.ASSET_FX_MONSTER, ["assets/fxMonster.mp3"]);
 	objPhaser.load.audio(Constants.ASSET_FX_KARMA, ["assets/fxKarma.mp3"]);
 	objPhaser.load.audio(Constants.ASSET_FX_HIT, ["assets/fxHit.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_SCORE, ["assets/fxScore.mp3"]);
 
 	objPhaser.load.image(Constants.ASSET_FINAL_SCORE, "assets/finalscore.png");
 }

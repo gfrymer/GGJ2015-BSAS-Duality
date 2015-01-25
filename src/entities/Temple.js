@@ -2,7 +2,9 @@ Temple = ring.create([AbstractIcon], {
 
 	constructor: function()
 	{
-		this.sprite = objPhaser.add.spritesheet(0, 0, Constants.ASSET_TEMPLE, 292, 356);
+		this.sprite = objPhaser.add.sprite(0, 0, Constants.ASSET_TEMPLE);
+		this.sprite.scale.x = 0.7;
+		this.sprite.scale.y = 0.7;
 		this.sprite.animations.add("open");
 		this.type = Constants.ASSET_TEMPLE;
 	},

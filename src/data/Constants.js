@@ -66,6 +66,7 @@ Constants.ASSET_FX_SHIELD = "fxShield";
 Constants.ASSET_FX_MONSTER = "fxMonster";
 Constants.ASSET_FX_KARMA = "fxKarma";
 Constants.ASSET_FX_HIT = "fxHit";
+Constants.ASSET_FX_SCORE = "fxScore";
 
 Constants.ASSET_FLYING_POWER = "flyingpower";
 Constants.ASSET_FLYING_POWER_DYNAMIC = "flyingpowerdynamic";
@@ -92,6 +93,7 @@ Constants.ASSET_MONSTER_ICON = "monster_icon";
 Constants.ASSET_FINAL_SCORE = "finalscore";
 Constants.ASSET_CREDITS = "credits";
 Constants.ASSET_HELP = "help";
+Constants.ASSET_STORY = "story";
 Constants.ASSET_GAME_OVER = "gameover";
 
 Constants.ASSET_WHITE_PARTICLE = "white_particle";
@@ -104,3 +106,8 @@ Constants.ASSET_LIFE_PARTICLE = "life_particle";
 Constants.ASSET_KARMA_PARTICLE = "karma_particle";
 
 Constants.ASSET_BOOSTER_FX = "booster_fx";
+
+Constants.POINTS_PER_KARMA = 50;
+Constants.POINTS_PER_LIFE = 300;
+
+Constants.POINTS_SPEED = 7;

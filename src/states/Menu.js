@@ -18,8 +18,12 @@ Menu = ring.create([], {
 		this.btnCredits = objPhaser.add.button(objPhaser.world.centerX, objPhaser.world.centerY+310, Constants.ASSET_BTN_CREDITS, this.onCreditsClick, this);
 		this.btnCredits.anchor.set(0.5);
 
-		this.bgMusic = objPhaser.add.audio(Constants.ASSET_GAME_MUSIC);
-		this.bgMusic.play('', 0, 1, true);
+		if (!objPhaser.isplayingmenu)
+		{
+			objPhaser.isplayingmenu=true;
+			this.bgMusic = objPhaser.add.audio(Constants.ASSET_GAME_MUSIC);
+			this.bgMusic.play('', 0, 1, true);
+		}
 	},
 
 	update: function()
@@ -29,25 +33,23 @@ Menu = ring.create([], {
 
 	onPlayClick: function()
 	{
+		objPhaser.isplayingmenu = false;
 		this.bgMusic.stop();
 		objPhaser.state.start(Constants.STATE_GAME);
 	},
 
 	onStoryClick: function()
 	{
-		this.bgMusic.stop();
 		objPhaser.state.start(Constants.STATE_STORY);
 	},
 
 	onHelpClick: function()
 	{
-		this.bgMusic.stop();
 		objPhaser.state.start(Constants.STATE_HELP);
 	},
 
 	onCreditsClick: function()
 	{
-		this.bgMusic.stop();
 		objPhaser.state.start(Constants.STATE_CREDITS);
 	},
 
