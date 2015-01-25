@@ -25,7 +25,7 @@ Main.prototype.preload = function()
 	objPhaser.load.image(Constants.ASSET_MONSTER_ICON, "assets/monsterIcon.png");
 	objPhaser.load.image(Constants.ASSET_SHIELD_ICON, "assets/shieldIcon.png");
 
-	objPhaser.load.audio(Constants.ASSET_BG_MUSIC, "assets/bgMusic.mp3");
+	//objPhaser.load.audio(Constants.ASSET_BG_MUSIC, "assets/bgMusic.mp3");
 }
 
 Main.prototype.create = function()

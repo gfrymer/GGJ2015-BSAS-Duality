@@ -25,7 +25,7 @@ Hero = ring.create([AbstractEntity], {
 		this.shieldtime = 0;
 		
 		this.lives = Constants.TOTAL_LIVES;
-		this.karma = Constants.TOTAL_KARMA / 2;
+		this.karma = Constants.TOTAL_KARMA;
 
 		this.flyingpower.updateKarma(this.karma);
 
@@ -96,10 +96,10 @@ Hero = ring.create([AbstractEntity], {
 	
 	substractKarma: function()
 	{
-		this.karma -= 2.5;
-		if(this.karma < 0)
+		this.karma -= 2;
+		if(this.karma <= 0)
 		{
-			this.karma = 0;
+			this.karma = 0.01;
 		}
 
 		this.flyingpower.updateKarma(this.karma);
@@ -112,7 +112,7 @@ Hero = ring.create([AbstractEntity], {
 		{
 			this.karma = Constants.TOTAL_KARMA;
 		}
-		
+
 		this.flyingpower.updateKarma(this.karma);
 	},
 	

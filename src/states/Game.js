@@ -21,8 +21,8 @@ Game = ring.create([], {
 		this.itemManagerUp = new ItemManager();
 		this.itemManagerDown = new ItemManager();
 
-		this.bgMusic = objPhaser.add.audio(Constants.BG_MUSIC);
-		this.bgMusic.play()
+		//this.bgMusic = objPhaser.add.audio(Constants.BG_MUSIC);
+		//this.bgMusic.play()
 	},
 
 	positionItems:function(isup,items)
@@ -153,7 +153,7 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_LIFE_ICON)
 		{
 			hero.moreLife();
-			//heromonster.moreKarma();
+			heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_MONSTER_ICON)
 		{
@@ -171,11 +171,11 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_SHIELD_ICON)
 		{
 			hero.setShield(true);
-			//heromonster.moreKarma();
+			heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_BAD_KARMA_ICON)
 		{
-			//hero.substractKarma();
+			hero.substractKarma();
 		}
 	},
 	
