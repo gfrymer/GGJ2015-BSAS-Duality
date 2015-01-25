@@ -7,6 +7,10 @@ Constants.STATE_MENU = "menu";
 Constants.STATE_GAME = "game";
 Constants.STATE_GAME_OVER = "game_over";
 
+Constants.GAME_SPEED = 5;
+
+Constants.GAME_TIME_TEMPLE = 4500;
+
 Constants.ITEM_Y_UP = 30;
 Constants.ITEM_Y_MIDDLE = 130;
 Constants.ITEM_Y_DOWN = 230;
@@ -21,7 +25,7 @@ Constants.HERO_SHIELD_TIME = 150;
 
 Constants.HERO_SCALE = 2/3;
 Constants.HERO_X_OFFSET = 200;
-Constants.HERO_Y_OFFSET = 185;
+Constants.HERO_Y_OFFSET = 200;
 
 Constants.HERO_FLYING_POWER = 100;
 Constants.HUD_X_OFFSET = 5;
@@ -37,6 +41,7 @@ Constants.MONSTER_LEVITATE_ACCELERATION = 20;
 Constants.HERO_LEVITATE_SPEED = 10;
 Constants.HERO_LEVITATE_ACCELERATION = 3;
 Constants.HERO_JUMP_SPEED = 5;
+Constants.HERO_RECTANGLE_COLLISION_SHRINK = 5;
 
 Constants.HERO_TOP_JUMP = 180;
 Constants.HERO_KARMA = 100;
@@ -57,6 +62,7 @@ Constants.ASSET_BACKGROUND_UP = "background_up";
 Constants.ASSET_BACKGROUND_DOWN = "background_down";
 
 Constants.ASSET_LIFE = "life";
+Constants.ASSET_TEMPLE = "temple";
 
 Constants.ASSET_MONSTER = "monster";
 Constants.ASSET_BAD_KARMA_ICON = "bad_karma";
