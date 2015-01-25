@@ -107,7 +107,7 @@ ItemManager = ring.create([], {
 
 	forceMonster: function()
 	{
-		this.itemsStack.unshift( [ Constants.ASSET_MONSTER ] );
+		this.itemsStack.unshift( [ Constants.ASSET_MONSTER, Constants.ASSET_MONSTER ] );
 		this.nextItemTime = this.getRandomTime();
 	},
 
