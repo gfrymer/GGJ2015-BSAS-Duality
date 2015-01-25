@@ -24,7 +24,7 @@ Constants.MINI_SCREEN_HEIGHT = 300;
 Constants.ITEM_WIDTH = 45;
 
 Constants.TOTAL_LIVES = 3;
-Constants.TOTAL_KARMA = 10;
+Constants.TOTAL_KARMA = 25;
 
 Constants.DOWN_Y_OFFSET = 360;
 

@@ -145,7 +145,7 @@ Hero = ring.create([AbstractEntity], {
 	
 	moreKarma: function()
 	{
-		this.karma += 1;
+		this.karma += 1.5;
 		if(this.karma > Constants.TOTAL_KARMA)
 		{
 			this.karma = Constants.TOTAL_KARMA;
