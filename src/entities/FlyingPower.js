@@ -51,7 +51,7 @@ FlyingPower = ring.create([AbstractEntity], {
 
 	decrement:function()
 	{
-		this.flyingTotal-=3;
+		this.flyingTotal-=3.5;
 		if (this.flyingTotal<0)
 		{
 			this.flyingTotal=0;
@@ -64,8 +64,9 @@ FlyingPower = ring.create([AbstractEntity], {
 	{
 		if (this.flyingTotal<Constants.HERO_FLYING_POWER)
 		{
-			this.flyingTotal++;
+			this.flyingTotal += .75;
 		}
+		
 		if (this.previousflyingTotal!=this.flyingTotal)
 		{
 			this.barFlying.mask = null;

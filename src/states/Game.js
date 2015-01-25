@@ -85,6 +85,8 @@ Game = ring.create([], {
 			{
 				this.itemManagerUp.forceMonster();
 			}
+
+			heromonster.substractKarma();
 		}
 		if (colitem.type==Constants.ASSET_MONSTER)
 		{
@@ -103,6 +105,7 @@ Game = ring.create([], {
 		if (colitem.type==Constants.ASSET_SHIELD_ICON)
 		{
 			hero.setShield(true);
+			heromonster.moreKarma();
 		}
 		if (colitem.type==Constants.ASSET_BAD_KARMA_ICON)
 		{
@@ -111,6 +114,7 @@ Game = ring.create([], {
 		if (colitem.type==Constants.ASSET_LIFE_ICON)
 		{
 			hero.moreLife();
+			heromonster.moreKarma();
 		}
 		for (i=0;i<items[rmv[0]].length;i++)
 		{

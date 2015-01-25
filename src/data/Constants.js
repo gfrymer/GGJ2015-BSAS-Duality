@@ -14,6 +14,7 @@ Constants.MINI_SCREEN_HEIGHT = 300;
 Constants.ITEM_WIDTH = 45;
 
 Constants.TOTAL_LIVES = 3;
+Constants.TOTAL_KARMA = 100;
 
 Constants.DOWN_Y_OFFSET = 360;
 
@@ -39,7 +40,6 @@ Constants.HERO_LEVITATE_ACCELERATION = 3;
 Constants.HERO_JUMP_SPEED = 5;
 
 Constants.HERO_TOP_JUMP = 180;
-Constants.HERO_KARMA = 100;
 
 Constants.ASSET_BTN_PLAY = "btn_play";
 

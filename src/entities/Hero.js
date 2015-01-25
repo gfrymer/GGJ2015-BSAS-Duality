@@ -17,21 +17,21 @@ Hero = ring.create([AbstractEntity], {
 		this.sprite = objPhaser.add.sprite(Constants.HERO_X_OFFSET, ypos, heroImage);
 		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE;
 		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE;
-		this.sprite.scale.setTo(Constants.HERO_SCALE, Constants.HERO_SCALE);
+		this.sprite.scale.setTo(Constants.HERO_SCALE);
 		this.anim = Math.floor(Math.random() * Constants.HERO_LEVITATE_SPEED);
 		this.sinchange = 0;
 		this.ofsy = 0;
-		this.lives = Constants.TOTAL_LIVES;
 		this.shield = false;
 		this.shieldtime = 0;
-		this.karma = Constants.HERO_KARMA;
-		
+		this.karma = Constants.TOTAL_KARMA;
+		this.lives = Constants.TOTAL_LIVES;
+
 		this.lifewidth = PIXI.TextureCache[Constants.ASSET_LIFE].width;
 		this.lifeheight = PIXI.TextureCache[Constants.ASSET_LIFE].height;
 		this.life = [];
 		for (i=0;i<this.lives;i++)
 		{
-			this.life[i] = objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
+			this.life[i] = objPhaser.add.sprite( ((this.lifewidth * 1.1) * (i + 1))  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE );
 		}
 	},
 
@@ -88,7 +88,7 @@ Hero = ring.create([AbstractEntity], {
 		}
 
 		this.lives++;
-		this.life.push(objPhaser.add.sprite(((this.lives) * (this.lifewidth * 1.3)) + Constants.HUD_X_OFFSET,Constants.HUD_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
+		this.life.push( objPhaser.add.sprite( ((this.lifewidth * 1.1) * (this.lives) )  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE ) );
 	},
 	
 	substractKarma: function()
@@ -96,6 +96,13 @@ Hero = ring.create([AbstractEntity], {
 		this.karma--;
 	},
 	
+	moreKarma: function()
+	{
+		this.karma++;
+	},
+	
+	
+
 	update: function(items)
 	{
 		this.flyingpower.update();
@@ -119,6 +126,7 @@ Hero = ring.create([AbstractEntity], {
 				}
 			}
 		}
+
 		if (this.shield)
 		{
 			if (this.shieldtime>0)
@@ -130,11 +138,13 @@ Hero = ring.create([AbstractEntity], {
 				this.useShield();
 			}
 		}
+
 		if (this.ofsy>0)
 		{
-				this.ofsy--;
-				this.sprite.y++;
+			this.ofsy--;
+			this.sprite.y++;
 		}
+		
 		this.anim++;
 		if (this.anim % Constants.HERO_LEVITATE_SPEED == 0)
 		{
