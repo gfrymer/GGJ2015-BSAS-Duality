@@ -20,14 +20,16 @@ Constants.DOWN_Y_OFFSET = 360;
 Constants.HERO_SHIELD_TIME = 150;
 
 Constants.HERO_SCALE = 2/3;
-Constants.HERO_X_OFFSET = 30;
+Constants.HERO_X_OFFSET = 200;
 Constants.HERO_Y_OFFSET = 185;
 
 Constants.HERO_FLYING_POWER = 100;
-Constants.FLYING_X_OFFSET = 10;
-Constants.FLYING_Y_OFFSET = 30;
-Constants.FLYING_DYNAMIC_X_OFFSET = 11;
-Constants.FLYING_DYNAMIC_Y_OFFSET = 0;
+Constants.HUD_X_OFFSET = 5;
+Constants.HUD_Y_OFFSET = 5;
+Constants.FLYING_BAR_X_OFFSET = 17;
+Constants.FLYING_BAR_Y_OFFSET = 78;
+Constants.KARMA_BAR_X_OFFSET = 17;
+Constants.KARMA_BAR_Y_OFFSET = 53;
 
 Constants.MONSTER_LEVITATE_SPEED = 5;
 Constants.MONSTER_LEVITATE_ACCELERATION = 20;
@@ -46,6 +48,10 @@ Constants.ASSET_FLYING_POWER_DYNAMIC = "flyingpowerdynamic";
 
 Constants.ASSET_HERO_UP = "hero_up";
 Constants.ASSET_HERO_DOWN = "hero_down";
+
+Constants.ASSET_HUD = "hud.png";
+Constants.ASSET_HUD_BAR_FLYING = "hud_bar_life";
+Constants.ASSET_HUD_BAR_KARMA = "hud_bar_karma";
 
 Constants.ASSET_BACKGROUND_UP = "background_up";
 Constants.ASSET_BACKGROUND_DOWN = "background_down";

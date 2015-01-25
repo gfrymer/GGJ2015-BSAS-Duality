@@ -12,8 +12,8 @@ Game = ring.create([], {
 		this.itemsdown = [];
 		this.scup = new Scroll(Constants.ASSET_BACKGROUND_UP,0,this.gamespeed);
 		this.scdown = new Scroll(Constants.ASSET_BACKGROUND_DOWN,Constants.DOWN_Y_OFFSET,this.gamespeed);
-		this.heroup = new Hero(true,Constants.ASSET_HERO_UP,Constants.HERO_Y_OFFSET);
-		this.herodown = new Hero(false,Constants.ASSET_HERO_DOWN,Constants.HERO_Y_OFFSET + Constants.DOWN_Y_OFFSET);
+		this.heroup = new Hero(true, Constants.ASSET_HERO_UP, Constants.HERO_Y_OFFSET);
+		this.herodown = new Hero(false, Constants.ASSET_HERO_DOWN, Constants.HERO_Y_OFFSET + Constants.DOWN_Y_OFFSET);
 
 		this.itemManagerUp = new ItemManager();
 		this.itemManagerDown = new ItemManager();

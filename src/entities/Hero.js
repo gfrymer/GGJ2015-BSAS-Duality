@@ -1,19 +1,20 @@
 Hero = ring.create([AbstractEntity], {
 
-	constructor: function(isup,heroImage,ypos)
+	constructor: function(isup, heroImage, ypos)
 	{
 		if (isup)
 		{
 			this.upKey = objPhaser.input.keyboard.addKey(Phaser.Keyboard.UP);
-			this.flyingpower = new FlyingPower(Constants.ASSET_FLYING_POWER,Constants.ASSET_FLYING_POWER_DYNAMIC,Constants.FLYING_Y_OFFSET,Constants.HERO_FLYING_POWER);
+			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET,Constants.HERO_FLYING_POWER);
 		}
 		else
 		{
 		  this.upKey = objPhaser.input.keyboard.addKey(Phaser.Keyboard.W);
-			this.flyingpower = new FlyingPower(Constants.ASSET_FLYING_POWER,Constants.ASSET_FLYING_POWER_DYNAMIC,Constants.FLYING_Y_OFFSET + Constants.DOWN_Y_OFFSET,Constants.HERO_FLYING_POWER);
+			this.flyingpower = new FlyingPower(Constants.HUD_Y_OFFSET + Constants.DOWN_Y_OFFSET, Constants.HERO_FLYING_POWER);
 		}
+
 		this.isup=isup;
-		this.sprite = objPhaser.add.sprite(Constants.HERO_X_OFFSET,ypos,heroImage);
+		this.sprite = objPhaser.add.sprite(Constants.HERO_X_OFFSET, ypos, heroImage);
 		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE;
 		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE;
 		this.sprite.scale.setTo(Constants.HERO_SCALE, Constants.HERO_SCALE);
@@ -30,7 +31,7 @@ Hero = ring.create([AbstractEntity], {
 		this.life = [];
 		for (i=0;i<this.lives;i++)
 		{
-			this.life[i] = objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.3)) + this.flyingpower.getWidth() + Constants.FLYING_X_OFFSET,Constants.FLYING_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
+			this.life[i] = objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE);
 		}
 	},
 
@@ -81,8 +82,13 @@ Hero = ring.create([AbstractEntity], {
 	
 	moreLife: function()
 	{
+		if(this.lives == Constants.TOTAL_LIVES)
+		{
+			return;
+		}
+
 		this.lives++;
-		this.life.push(objPhaser.add.sprite(((this.lives) * (this.lifewidth * 1.3)) + this.flyingpower.getWidth() + Constants.FLYING_X_OFFSET,Constants.FLYING_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
+		this.life.push(objPhaser.add.sprite(((this.lives) * (this.lifewidth * 1.3)) + Constants.HUD_X_OFFSET,Constants.HUD_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
 	},
 	
 	substractKarma: function()

@@ -7,16 +7,18 @@ Main = function()
 
 Main.prototype.preload = function()
 {
-	objPhaser.load.image(Constants.ASSET_HERO_UP, "assets/hero.png");
-	objPhaser.load.image(Constants.ASSET_HERO_DOWN, "assets/hero.png");
+	objPhaser.load.image(Constants.ASSET_HERO_UP, "assets/hero1.png");
+	objPhaser.load.image(Constants.ASSET_HERO_DOWN, "assets/hero2.png");
 	objPhaser.load.image(Constants.ASSET_BTN_PLAY, "assets/btnPLay.png");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_UP, "assets/bg.jpg");
 	objPhaser.load.image(Constants.ASSET_BACKGROUND_DOWN, "assets/bg2.jpg");
-	objPhaser.load.image(Constants.ASSET_FLYING_POWER, "assets/flyingpower.png");
-	objPhaser.load.image(Constants.ASSET_FLYING_POWER_DYNAMIC, "assets/flyingpowerdynamic.png");
+
+	objPhaser.load.image(Constants.ASSET_HUD, "assets/hud.png");
+	objPhaser.load.image(Constants.ASSET_HUD_BAR_FLYING, "assets/bar_flying.png");
+	objPhaser.load.image(Constants.ASSET_HUD_BAR_KARMA, "assets/bar_karma.png");
 	objPhaser.load.image(Constants.ASSET_LIFE, "assets/life.png");
 
-	objPhaser.load.image(Constants.ASSET_MONSTER, "assets/monster.png");
+	objPhaser.load.spritesheet(Constants.ASSET_MONSTER, "assets/monster.png", 100, 100);
 	objPhaser.load.image(Constants.ASSET_BAD_KARMA_ICON, "assets/karmaIcon.png");
 	objPhaser.load.image(Constants.ASSET_LIFE_ICON, "assets/lifeIcon.png");
 	objPhaser.load.image(Constants.ASSET_MONSTER_ICON, "assets/monsterIcon.png");
