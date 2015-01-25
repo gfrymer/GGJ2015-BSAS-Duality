@@ -47,7 +47,13 @@ Main.prototype.preload = function()
 
 	objPhaser.load.spritesheet(Constants.ASSET_BOOSTER_FX, "assets/booster_fx.png", 150, 150);
 
-	objPhaser.load.audio(Constants.ASSET_BG_MUSIC, ["assets/bgMusic.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_BG_MUSIC, ["assets/gameMusic.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_GAME_MUSIC, ["assets/menuMusic.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_LIFE, ["assets/fxLife.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_SHIELD, ["assets/fxShield.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_MONSTER, ["assets/fxMonster.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_KARMA, ["assets/fxKarma.mp3"]);
+	objPhaser.load.audio(Constants.ASSET_FX_HIT, ["assets/fxHit.mp3"]);
 
 	objPhaser.load.image(Constants.ASSET_FINAL_SCORE, "assets/finalscore.png");
 }

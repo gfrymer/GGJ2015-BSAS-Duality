@@ -60,6 +60,12 @@ Constants.ASSET_BTN_CREDITS = "btn_credits";
 Constants.ASSET_TITLE = "title";
 
 Constants.ASSET_BG_MUSIC = "bgMusic";
+Constants.ASSET_MENU_MUSIC = "menuMusic";
+Constants.ASSET_FX_LIFE = "fxLife";
+Constants.ASSET_FX_SHIELD = "fxShield";
+Constants.ASSET_FX_MONSTER = "fxMonster";
+Constants.ASSET_FX_KARMA = "fxKarma";
+Constants.ASSET_FX_HIT = "fxHit";
 
 Constants.ASSET_FLYING_POWER = "flyingpower";
 Constants.ASSET_FLYING_POWER_DYNAMIC = "flyingpowerdynamic";

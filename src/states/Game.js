@@ -232,6 +232,9 @@ Game = ring.create([], {
 		if (colitem.type==Constants.ASSET_MONSTER_ICON)
 		{
 			this.animateMonster(isup,colitem);
+			
+			fx = objPhaser.add.audio(Constants.ASSET_FX_MONSTER);
+			fx.play('', 0, 1, false);
 		}
 		if (colitem.type==Constants.ASSET_MONSTER)
 		{
@@ -241,6 +244,9 @@ Game = ring.create([], {
 			}
 			else
 			{
+				fx = objPhaser.add.audio(Constants.ASSET_FX_HIT);
+				fx.play('', 0, 1, false);
+
 				if (heromonster.loseLife())
 				{
 					this.gameover = objPhaser.add.sprite(Constants.STATE_SCREEN_WIDTH / 2, Constants.STATE_SCREEN_HEIGHT / 2, Constants.ASSET_GAME_OVER);
@@ -256,14 +262,23 @@ Game = ring.create([], {
 		if (colitem.type==Constants.ASSET_SHIELD_ICON)
 		{
 			this.animateItem(isup,colitem,false);
+
+			fx = objPhaser.add.audio(Constants.ASSET_FX_SHIELD);
+			fx.play('', 0, 1, false);
 		}
 		if (colitem.type==Constants.ASSET_BAD_KARMA_ICON)
 		{
 			this.animateItem(isup,colitem,false);
+
+			fx = objPhaser.add.audio(Constants.ASSET_FX_KARMA);
+			fx.play('', 0, 1, false);
 		}
 		if (colitem.type==Constants.ASSET_LIFE_ICON)
 		{
 			this.animateItem(isup,colitem,false);
+
+			fx = objPhaser.add.audio(Constants.ASSET_FX_LIFE);
+			fx.play('', 0, 1, false);
 		}
 		for (i=0;i<items[rmv[0]].length;i++)
 		{
