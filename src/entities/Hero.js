@@ -116,6 +116,9 @@ Hero = ring.create([AbstractEntity], {
 		}
 		else
 		{
+			this.lives--;
+			objPhaser.world.remove(this.life[this.lives]);
+			this.life.splice(this.lives,1);
 			return true;
 		}
 		return false;
