@@ -59,6 +59,13 @@ FlyingPower = ring.create([AbstractEntity], {
 		}
 		return true;
 	},
+
+	updateKarma: function(currentKarma)
+	{
+		var percent = currentKarma * 100 / Constants.TOTAL_KARMA;
+		this.maskKarma.scale.x = percent / 100;
+		console.log(this.maskKarma.scale.x)
+	},
 	
 	update: function()
 	{

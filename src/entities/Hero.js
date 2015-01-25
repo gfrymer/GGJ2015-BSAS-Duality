@@ -15,22 +15,19 @@ Hero = ring.create([AbstractEntity], {
 
 		this.isup=isup;
 		this.sprite = objPhaser.add.sprite(Constants.HERO_X_OFFSET, ypos, heroImage);
-<<<<<<< HEAD
-		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE;
-		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE;
-		this.sprite.scale.setTo(Constants.HERO_SCALE);
-=======
 		this.width = PIXI.TextureCache[heroImage].width * Constants.HERO_SCALE - Constants.HERO_RECTANGLE_COLLISION_SHRINK;
 		this.height = PIXI.TextureCache[heroImage].height * Constants.HERO_SCALE - Constants.HERO_RECTANGLE_COLLISION_SHRINK;
 		this.sprite.scale.setTo(Constants.HERO_SCALE, Constants.HERO_SCALE);
->>>>>>> origin/master
 		this.anim = Math.floor(Math.random() * Constants.HERO_LEVITATE_SPEED);
 		this.sinchange = 0;
 		this.ofsy = 0;
 		this.shield = false;
 		this.shieldtime = 0;
-		this.karma = Constants.TOTAL_KARMA;
+		
 		this.lives = Constants.TOTAL_LIVES;
+		this.karma = Constants.TOTAL_KARMA / 2;
+
+		this.flyingpower.updateKarma(this.karma);
 
 		this.lifewidth = PIXI.TextureCache[Constants.ASSET_LIFE].width;
 		this.lifeheight = PIXI.TextureCache[Constants.ASSET_LIFE].height;
@@ -92,31 +89,36 @@ Hero = ring.create([AbstractEntity], {
 		{
 			return;
 		}
+
 		this.lives++;
-<<<<<<< HEAD
-		this.life.push( objPhaser.add.sprite( ((this.lifewidth * 1.1) * (this.lives) )  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE ) );
-=======
-		this.life.push(objPhaser.add.sprite(((i+1) * (this.lifewidth * 1.1)),Constants.HUD_Y_OFFSET + ((this.isup) ? 0 : Constants.DOWN_Y_OFFSET),Constants.ASSET_LIFE));
->>>>>>> origin/master
+		this.life.push(objPhaser.add.sprite((this.lifewidth * 1.1) * this.lives  , Constants.HUD_Y_OFFSET + ( ( this.isup ) ? 0 : Constants.DOWN_Y_OFFSET ), Constants.ASSET_LIFE))
 	},
 	
 	substractKarma: function()
 	{
-		this.karma--;
+		this.karma -= 2.5;
+		if(this.karma < 0)
+		{
+			this.karma = 0;
+		}
+
+		this.flyingpower.updateKarma(this.karma);
 	},
 	
-<<<<<<< HEAD
 	moreKarma: function()
 	{
-		this.karma++;
+		this.karma += 1;
+		if(this.karma > Constants.TOTAL_KARMA)
+		{
+			this.karma = Constants.TOTAL_KARMA;
+		}
+		
+		this.flyingpower.updateKarma(this.karma);
 	},
 	
 	
 
-	update: function(items)
-=======
 	update: function(items,gamespeed)
->>>>>>> origin/master
 	{
 		this.flyingpower.update();
 		if (this.upKey.isDown)

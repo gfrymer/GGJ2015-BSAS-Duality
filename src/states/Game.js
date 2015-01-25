@@ -20,6 +20,9 @@ Game = ring.create([], {
 
 		this.itemManagerUp = new ItemManager();
 		this.itemManagerDown = new ItemManager();
+
+		this.bgMusic = objPhaser.add.audio(Constants.BG_MUSIC);
+		this.bgMusic.play()
 	},
 
 	positionItems:function(isup,items)
@@ -150,6 +153,7 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_LIFE_ICON)
 		{
 			hero.moreLife();
+			//heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_MONSTER_ICON)
 		{
@@ -167,10 +171,11 @@ Game = ring.create([], {
 		if (type==Constants.ASSET_SHIELD_ICON)
 		{
 			hero.setShield(true);
+			//heromonster.moreKarma();
 		}
 		if (type==Constants.ASSET_BAD_KARMA_ICON)
 		{
-			hero.substractKarma();
+			//hero.substractKarma();
 		}
 	},
 	
@@ -200,12 +205,7 @@ Game = ring.create([], {
 		}
 		if (colitem.type==Constants.ASSET_SHIELD_ICON)
 		{
-<<<<<<< HEAD
-			hero.setShield(true);
-			heromonster.moreKarma();
-=======
 			this.animateItem(isup,colitem,false);
->>>>>>> origin/master
 		}
 		if (colitem.type==Constants.ASSET_BAD_KARMA_ICON)
 		{
@@ -213,12 +213,7 @@ Game = ring.create([], {
 		}
 		if (colitem.type==Constants.ASSET_LIFE_ICON)
 		{
-<<<<<<< HEAD
-			hero.moreLife();
-			heromonster.moreKarma();
-=======
 			this.animateItem(isup,colitem,false);
->>>>>>> origin/master
 		}
 		for (i=0;i<items[rmv[0]].length;i++)
 		{

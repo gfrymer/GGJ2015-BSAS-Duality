@@ -18,7 +18,7 @@ Constants.MINI_SCREEN_HEIGHT = 300;
 Constants.ITEM_WIDTH = 45;
 
 Constants.TOTAL_LIVES = 3;
-Constants.TOTAL_KARMA = 100;
+Constants.TOTAL_KARMA = 10;
 
 Constants.DOWN_Y_OFFSET = 360;
 
@@ -47,6 +47,8 @@ Constants.HERO_RECTANGLE_COLLISION_SHRINK = 5;
 Constants.HERO_TOP_JUMP = 180;
 
 Constants.ASSET_BTN_PLAY = "btn_play";
+
+Constants.ASSET_BG_MUSIC = "bgMusic";
 
 Constants.ASSET_FLYING_POWER = "flyingpower";
 Constants.ASSET_FLYING_POWER_DYNAMIC = "flyingpowerdynamic";
